@@ -3,21 +3,39 @@
 namespace CodePub\Http\Controllers;
 
 use CodePub\Http\Requests\CategoryRequest;
-use CodePub\Models\Category;
+use CodePub\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
+
+    /**
+     * @var CategoryRepository
+     */
+    private $repository;
+
+    /**
+     * CategoriesController constructor.
+     * @param CategoryRepository $repository
+     */
+    public function __construct(CategoryRepository $repository)
+    {
+
+        $this->repository = $repository;
+    }
+
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::query()->paginate(10);
-        //dd($categories);
-        return view('categories.index', compact('categories'));
+        $search = $request->get('search');
+        //$this->repository->pushCriteria(new FindByTitleCriteria($search));
+        $categories = $this->repository->orderBy('id', 'desc')->paginate(10);
+        return view('categories.index', compact('categories', 'search'));
     }
 
     /**
@@ -33,14 +51,15 @@ class CategoriesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @param CategoryRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(CategoryRequest $request)
     {
-        Category::create($request->all());
-
+        $data = $request->all();
+        $this->repository->create($data);
         $url = $request->get('redirect_to', route('categories.index'));
-        $request->session()->flash('message', 'Categoria cadastrada com sucesso.');
+        $request->session()->flash('message', 'Categoria Cadastrada com Sucesso!');
 
         return redirect()->to($url);
     }
@@ -48,7 +67,7 @@ class CategoriesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -59,12 +78,13 @@ class CategoriesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Category $category
+     * @param $id
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
+        $category = $this->repository->find($id);
         return view('categories.edit', compact('category'));
     }
 
@@ -72,31 +92,32 @@ class CategoriesController extends Controller
      * Update the specified resource in storage.
      *
      * @param CategoryRequest|Request $request
-     * @param Category $category
+     * @param $id
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
-    public function update(CategoryRequest $request, Category $category)
+    public function update(CategoryRequest $request, $id)
     {
-        $category->fill($request->all());
-        $category->save();
+        $data = $request->all();
+        $this->repository->update($data, $id);
         $url = $request->get('redirect_to', route('categories.index'));
-        $request->session()->flash('message', 'Categoria atualizada com sucesso.');
+        $request->session()->flash('message', 'Categoria Atualizada com Sucesso!');
 
         return redirect()->to($url);
     }
 
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param Category $category
+     * @param $id
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        $category->delete();
-        \Session::flash('message', 'Categoria deletada com sucesso.');
+        $this->repository->delete($id);
+        \Session::flash('message', 'Categoria removida com sucesso.');
 
         return redirect()->to(\URL::previous());
     }

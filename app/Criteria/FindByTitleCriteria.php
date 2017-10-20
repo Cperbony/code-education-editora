@@ -28,6 +28,6 @@ class FindByTitleCriteria implements CriteriaInterface
      */
     public function apply($model, RepositoryInterface $repository)
     {
-        return $model->where('title', $this->$title);
+        return $model->where('title', 'LIKE', "%{$this->title}%");
     }
 }
