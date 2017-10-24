@@ -4,6 +4,7 @@ namespace CodePub\Http\Controllers;
 
 use CodePub\Http\Requests\BookCreateRequest;
 use CodePub\Http\Requests\BookUpdateRequest;
+use CodePub\Models\Category;
 use CodePub\Repositories\BookRepository;
 use CodePub\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
@@ -39,9 +40,11 @@ class BooksController extends Controller
     public function index(Request $request)
     {
         $search = $request->get('search');
+        $searchCategories = $request->get('searchCategories');
         //$this->repository->pushCriteria(new FindByTitleCriteria($search));
         $books = $this->repository->orderBy('id', 'desc')->paginate(10);
-        return view('books.index', compact('books', 'search'));
+        $categories = $this->repository->withTrashed();
+        return view('books.index', compact('books', 'categories', 'search', 'searchCategories'));
     }
 
     /**
@@ -92,7 +95,9 @@ class BooksController extends Controller
     public function edit($id)
     {
         $book = $this->repository->find($id);
-        $categories = $this->categoryRepository->lists('name', 'id');
+        $this->categoryRepository->withTrashed();
+//        $categories = Category::withTrashed()->pluck('name', 'id');
+        $categories = $this->categoryRepository->listsWithMutators('name_trashed', 'id');
         return view('books.edit', compact('book', 'categories'));
     }
 

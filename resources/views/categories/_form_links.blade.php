@@ -10,7 +10,7 @@ $table = Table::withContents($categories->items())->striped()
                'method' => 'DELETE', 'id' => $deleteForm, 'style' => 'display:none']).
                Form::close();
 
-               $anchorDestroy = Button::link('Excluir')
+               $anchorDestroy = Button::link('Enviar para Lixeira')
                                ->asLinkTo($linkDestroy)->addAttributes([
                                 'onclick' => "event.preventDefault();
                                 document.getElementById(\"{$deleteForm}\").submit();"

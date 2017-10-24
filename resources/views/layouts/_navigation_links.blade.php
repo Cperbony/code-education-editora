@@ -7,8 +7,17 @@ if (Auth::check()) {
             'title' => 'Categorias'
         ],
         [
-            'link' => route('books.index'),
-            'title' => 'Books'
+            'Books',
+            [
+                [
+                    'link' => route('books.index'),
+                    'title' => 'Listar'
+                ],
+                [
+                    'link' => route('trashed.books.index'),
+                    'title' => 'Lixeira'
+                ]
+            ]
         ]
     ]);
     $logout = Navigation::links([

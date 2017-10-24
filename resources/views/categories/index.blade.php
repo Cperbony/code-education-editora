@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
+        <div class="row text-center">
             <h3>Listagem de Categorias</h3>
         </div>
 

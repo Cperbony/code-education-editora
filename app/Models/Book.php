@@ -4,13 +4,18 @@ namespace CodePub\Models;
 
 use Bootstrapper\Interfaces\TableInterface;
 use Collective\Html\Eloquent\FormAccessible;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Prettus\Repository\Traits\TransformableTrait;
 
 class Book extends Model implements TableInterface
 {
     use TransformableTrait;
     use FormAccessible;
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     protected $fillable = [
         'title',
@@ -32,13 +37,19 @@ class Book extends Model implements TableInterface
      */
     public function categories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class)->withTrashed();
     }
 
-    public function formCategoriesAttribute() {
+    public function formCategoriesAttribute()
+    {
         return $this->categories->pluck('id')->all();
 
-}
+    }
+
+    public function formCategoriesNameAttribute()
+    {
+        return $this->categories->pluck('name');
+    }
 
     /**
      * A list of headers to be used when a table is displayed
@@ -47,7 +58,7 @@ class Book extends Model implements TableInterface
      */
     public function getTableHeaders()
     {
-        return ['#', 'Autor', 'Título', 'Subtítulo', 'Preço'];
+        return ['#', 'Autor', 'Título', 'Subtítulo', 'Preço', 'Categorias'];
     }
 
     /**
@@ -70,6 +81,9 @@ class Book extends Model implements TableInterface
                 return $this->subtitle;
             case 'Preço':
                 return $this->price;
+            case 'Categorias':
+                return $this->formCategoriesNameAttribute();
+            // return $this->categories()->pluck('name');
         }
     }
 }

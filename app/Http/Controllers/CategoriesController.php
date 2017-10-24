@@ -3,6 +3,7 @@
 namespace CodePub\Http\Controllers;
 
 use CodePub\Http\Requests\CategoryRequest;
+use CodePub\Models\Category;
 use CodePub\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 
@@ -33,10 +34,12 @@ class CategoriesController extends Controller
     public function index(Request $request)
     {
         $search = $request->get('search');
-        //$this->repository->pushCriteria(new FindByTitleCriteria($search));
+//        $this->repository->pushCriteria(new FindByTitleCriteria($search));
         $categories = $this->repository->orderBy('id', 'desc')->paginate(10);
         return view('categories.index', compact('categories', 'search'));
     }
+
+
 
     /**
      * Show the form for creating a new resource.

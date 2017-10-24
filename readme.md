@@ -29,6 +29,14 @@ Crie também as regras de validação para os campos de cada modelo.</br></p>
 <p>Nesta fase você deverá refatorar toda aplicação para trabalhar com repositories e criar buscas na listagem de livros e categorias.</p> 
 <hr/>
 
+<h4>Fase 5 - Exclusão lógica</h4>
+<p>Criar o relacionamento entre livros e categorias.</p>
+<p>Adicionar na busca de livros, a oportunidade de buscar livros pelo nome de um categoria por like.</p>
+<p>Implementar a exclusão lógica para livros e categorias.</p>
+<p>Criar a lixeira de livros.</p>
+<p>Estilizar as categorias excluídas quando mostradas na área de livros.</p>
+<hr/>
+
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
