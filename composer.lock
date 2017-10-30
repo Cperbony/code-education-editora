@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "37717841888ac3ad11d349d4e812c8b3",
+    "content-hash": "d0346beb975002d5ae6785983265c879",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -1368,6 +1368,67 @@
                 "php"
             ],
             "time": "2017-09-02T17:10:46+00:00"
+        },
+        {
+            "name": "nwidart/laravel-modules",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/codeedu/laravel-modules.git",
+                "reference": "75e4d6ea8bb9106db6ce98c4fb1a754ab56b32d5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/codeedu/laravel-modules/zipball/75e4d6ea8bb9106db6ce98c4fb1a754ab56b32d5",
+                "reference": "75e4d6ea8bb9106db6ce98c4fb1a754ab56b32d5",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "5.1.*|5.2.*|5.3.*",
+                "laravelcollective/html": "5.1.*|5.2.*|5.3.*",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^1.11",
+                "mockery/mockery": "~0.9",
+                "orchestra/testbench": "^3.1|^3.2|^3.3",
+                "phpro/grumphp": "^0.9.1",
+                "phpunit/phpunit": "~4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Nwidart\\Modules\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Nwidart\\Modules\\Tests\\": "tests"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Widart",
+                    "email": "n.widart@gmail.com",
+                    "homepage": "https://nicolaswidart.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Module management",
+            "keywords": [
+                "laravel",
+                "module",
+                "modules",
+                "nwidart",
+                "rad"
+            ],
+            "support": {
+                "source": "https://github.com/codeedu/laravel-modules/tree/master"
+            },
+            "time": "2016-12-08T17:31:01+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -4360,7 +4421,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "nwidart/laravel-modules": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

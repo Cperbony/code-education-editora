@@ -12,7 +12,8 @@
         "laravel/framework": "5.3.*",
         "laravelcollective/html": "^5.3.0",
         "patricktalmadge/bootstrapper": "~5.9.1",
-        "prettus/l5-repository": "2.6.6"
+        "prettus/l5-repository": "2.6.6",
+        "nwidart/laravel-modules" : "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -21,12 +22,20 @@
         "symfony/css-selector": "3.1.*",
         "symfony/dom-crawler": "3.1.*"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url" : "https://github.com/codeedu/laravel-modules.git"
+        }
+    ],
     "autoload": {
         "classmap": [
-            "database"
+            "database",
+            "Modules/CodeEduBook/database"
         ],
         "psr-4": {
-            "CodePub\\": "app/"
+            "CodePub\\": "app/",
+            "CodeEduBook\\": "Modules/CodeEduBook"
         }
     },
     "autoload-dev": {

@@ -1,0 +1,19 @@
+{
+    "name": "codeedu/codeedubook",
+    "description": "",
+    "authors": [
+        {
+            "name": "Claudinei Perboni",
+            "email": "cperbony@gmail.com"
+        }
+    ],
+  "require": {
+    "doctrine/dbal": "~2.3"
+  },
+    "license":"MIT",
+    "autoload": {
+        "psr-4": {
+            "CodeEduBook\\": ""
+        }
+    }
+}
