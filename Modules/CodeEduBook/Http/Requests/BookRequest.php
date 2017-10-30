@@ -1,10 +1,10 @@
 <?php
 
-namespace CodePub\Http\Requests;
+namespace CodeEduBook\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryRequest extends FormRequest
+class BookRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,9 @@ class CategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        $book = $this->route('book');
+        $user = $book ? $book->id : \Auth::user()->id;
+        return $user == \Auth::user()->id ? true : false;
     }
 
     /**
@@ -23,10 +25,10 @@ class CategoryRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->route('category');
-
         return [
-            'name' => "required|max:255|unique:categories,name, {$id}"
+            'title' => "required|max:255",
+            'subtitle' => "required|max:255",
+            'price' => "required|numeric"
         ];
     }
 }

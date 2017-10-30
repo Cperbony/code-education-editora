@@ -1,6 +1,6 @@
 <?php
 
-namespace CodePub\Http\Requests;
+namespace CodeEduBook\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

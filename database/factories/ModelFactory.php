@@ -23,13 +23,13 @@ $factory->define(\CodePub\Models\User::class, function (Faker\Generator $faker) 
     ];
 });
 
-$factory->define(\CodePub\Models\Category::class, function (Faker\Generator $faker) {
+$factory->define(\CodeEduBook\Models\Category::class, function (Faker\Generator $faker) {
     return [
         'name' => ucfirst($faker->unique()->word),
     ];
 });
 
-$factory->define(\CodePub\Models\Book::class, function (Faker\Generator $faker) {
+$factory->define(\CodeEduBook\Models\Book::class, function (Faker\Generator $faker) {
 
     $repository = app(\CodePub\Repositories\UserRepository::class);
     /** @var \Illuminate\Database\Eloquent\Collection $users */

@@ -1,13 +1,14 @@
 <?php
 
-namespace CodePub\Http\Requests;
+namespace CodeEduBook\Http\Requests;
 
-use CodePub\Repositories\BookRepository;
+use CodeEduBook\Http\Requests\BookCreateRequest;
+use CodeEduBook\Repositories\BookRepository;
 
 class BookUpdateRequest extends BookCreateRequest
 {
     /**
-     * @var BookRepository
+     * @var \CodeEduBook\Repositories\BookRepository
      */
     private $repository;
 

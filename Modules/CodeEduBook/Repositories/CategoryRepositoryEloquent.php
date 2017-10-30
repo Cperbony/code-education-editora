@@ -1,13 +1,13 @@
 <?php
 
-namespace CodePub\Repositories;
+namespace CodeEduBook\Repositories;
 
 use CodePub\Criteria\CriteriaTrashedTrait;
+use CodePub\Repositories\BaseRepositoryTrait;
 use Illuminate\Database\Eloquent\Collection;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use CodePub\Models\Category;
-use CodePub\Validators\CategoryValidator;
+use CodeEduBook\Models\Category;
 
 /**
  * Class CategoryRepositoryEloquent
@@ -41,6 +41,11 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
+    /**
+     * @param $column
+     * @param null $key
+     * @return \Illuminate\Support\Collection
+     */
     public function listsWithMutators($column, $key = null)
     {
         /** @var Collection $collection */

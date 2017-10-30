@@ -37,6 +37,11 @@ Crie também as regras de validação para os campos de cada modelo.</br></p>
 <p>Estilizar as categorias excluídas quando mostradas na área de livros.</p>
 <hr/>
 
+<h4>Fase 6 - Criando primeiro módulo</h4>
+<p>Nesta fase, você deverá criar o módulo de administração de livros e categorias como demonstrado no capítulo.</p>
+<p>Obs.: Nas views de criação e edição, precisamos acrescentar o namespace de view para fazer o include do formulário.</p>
+<hr/>
+
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 

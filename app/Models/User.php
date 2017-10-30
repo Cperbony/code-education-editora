@@ -2,6 +2,7 @@
 
 namespace CodePub\Models;
 
+use CodeEduBook\Models\Book;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
