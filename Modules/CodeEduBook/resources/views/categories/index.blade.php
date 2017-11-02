@@ -22,7 +22,7 @@
         </div>
         <br>
         <div class="row">
-            @Include('categories._form_links')
+            @Include('codeedubook::categories._form_links')
             {{ $categories->links() }}
         </div>
     </div>

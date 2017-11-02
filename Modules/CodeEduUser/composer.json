@@ -1,0 +1,15 @@
+{
+    "name": "codeedu/codeeduuser",
+    "description": "",
+    "authors": [
+        {
+            "name": "Claudinei Perboni",
+            "email": "cperbony@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "CodeEduUser\\": ""
+        }
+    }
+}

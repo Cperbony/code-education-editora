@@ -7,7 +7,7 @@
 
             {!! Form::open(['route' => 'books.store', 'class' => 'form']) !!}
 
-            @include('books._form')
+            @include('codeedubook::books._form')
 
             {!! Html::openFormGroup() !!}
             {!! Button::primary('Cadastrar Livro')->submit() !!}

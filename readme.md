@@ -2,6 +2,7 @@
 <h2>by Code Education</h2>
 <h3>Curso Ministrado pelo <a href="https://about.me/carlosluiz">Prof. Luiz Carlos Diniz</a><h/3>
 <hr/>
+
 <h4>Fase 1 - Abrindo a Editora</h4>
 <p>Nesta fase você deverá cria o ambiente da aplicação Laravel 5.3 mostrado no capítulo inicial, bem como o CRUD de categorias.</br>
 Você deverá criar também um CRUD para os livros da loja virtual.</br></p>
@@ -12,6 +13,7 @@ Você deverá criar também um CRUD para os livros da loja virtual.</br></p>
 <li>price - float (obrigatório)</li>
 </ul>
 <hr/>
+
 <h4>Fase 2 - Form Request Validation</h4>
 <p>Nesta fase você deverá criar um form request validation para categoria e livro.</br>
 Crie também as regras de validação para os campos de cada modelo.</br></p>
@@ -40,6 +42,14 @@ Crie também as regras de validação para os campos de cada modelo.</br></p>
 <h4>Fase 6 - Criando primeiro módulo</h4>
 <p>Nesta fase, você deverá criar o módulo de administração de livros e categorias como demonstrado no capítulo.</p>
 <p>Obs.: Nas views de criação e edição, precisamos acrescentar o namespace de view para fazer o include do formulário.</p>
+<hr/>
+
+<h4>Fase 7 - Administração de Usuários</h4>
+<p>Criação da autenticação de administração de usuários.</p>
+<p>CRUD de Usuários.</p>
+<p>Integração com Laravel User Verification</p>
+<p>Envio de Email de Usuários.</p>
+<p>Controle de Usuários Não Validados.</p>
 <hr/>
 
 

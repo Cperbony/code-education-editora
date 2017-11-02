@@ -20,7 +20,7 @@
         <br>
         <div class="row">
             @if ($books->count() > 0)
-                @include('trashed.books._form_links')
+                @include('codeedubook::trashed.books._form_links')
             @else
                 <div class="alert-danger well well-lg text-center"><strong>Lixeira Vazia</strong></div>
             @endif

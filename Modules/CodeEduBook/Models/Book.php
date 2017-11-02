@@ -4,7 +4,7 @@ namespace CodeEduBook\Models;
 
 use Bootstrapper\Interfaces\TableInterface;
 use CodeEduBook\Models\Category;
-use CodePub\Models\User;
+use CodeEduUser\Models\User;
 use Collective\Html\Eloquent\FormAccessible;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -31,7 +31,7 @@ class Book extends Model implements TableInterface
      */
     public function author()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(\CodeEduUser\Models\User::class);
     }
 
     /**

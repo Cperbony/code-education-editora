@@ -4,7 +4,6 @@ namespace CodeEduBook\Providers;
 
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -36,7 +35,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map(Router $router)
     {
-        Route::group([
+        \Route::group([
             'middleware' => 'web',
             'namespace' => $this->rootUrlNamespace
         ], function () {

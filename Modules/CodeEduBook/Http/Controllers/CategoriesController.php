@@ -2,7 +2,6 @@
 
 namespace CodeEduBook\Http\Controllers;
 
-use CodePub\Http\Controllers\Controller;
 use CodeEduBook\Http\Requests\CategoryRequest;
 use CodeEduBook\Repositories\CategoryRepository;
 use Illuminate\Http\Request;

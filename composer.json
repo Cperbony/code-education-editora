@@ -9,6 +9,7 @@
         "barryvdh/laravel-ide-helper": "^2.4",
         "caouecs/laravel-lang": "~3.0",
         "doctrine/dbal": "^2.6",
+        "jrean/laravel-user-verification": "3.0.23",
         "laravel/framework": "5.3.*",
         "laravelcollective/html": "^5.3.0",
         "nwidart/laravel-modules": "dev-master",
@@ -34,7 +35,8 @@
         ],
         "psr-4": {
             "CodePub\\": "app/",
-            "CodeEduBook\\": "Modules/CodeEduBook/"
+            "CodeEduBook\\": "Modules/CodeEduBook",
+            "CodeEduUser\\": "Modules/CodeEduUser"
         }
     },
     "autoload-dev": {

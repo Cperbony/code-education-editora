@@ -1,6 +1,6 @@
 <?php
 
-namespace CodePub\Repositories;
+namespace CodeEduUser\Repositories;
 
 use Prettus\Repository\Contracts\RepositoryInterface;
 

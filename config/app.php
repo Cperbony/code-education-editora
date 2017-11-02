@@ -173,8 +173,10 @@ return [
         \Nwidart\Modules\LaravelModulesServiceProvider::class,
 
         /*
-         * SERVICE PROVIDER DE MODULES
+         * SERVICE PROVIDER DE MODULOS
          */
+        \CodeEduBook\Providers\CodeEduBookServiceProvider::class,
+        \CodeEduUser\Providers\CodeEduUserServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -263,6 +265,9 @@ return [
         'Table' => Bootstrapper\Facades\Table::class,
         'Thumbnail' => Bootstrapper\Facades\Thumbnail::class,
         'Module' => \Nwidart\Modules\Facades\Module::class,
+        // jrean/laravel-user-verification
+        'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
+
     ],
 
 ];

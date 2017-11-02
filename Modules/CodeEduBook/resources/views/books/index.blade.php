@@ -36,7 +36,7 @@
 
         <br>
         <div class="row">
-            @include('books._form_links')
+            @include('codeedubook::books._form_links')
             {{ $books->links() }}
         </div>
     </div>

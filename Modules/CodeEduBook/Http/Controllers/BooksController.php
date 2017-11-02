@@ -2,7 +2,6 @@
 
 namespace CodeEduBook\Http\Controllers;
 
-use CodePub\Http\Controllers\Controller;
 use CodeEduBook\Http\Requests\BookCreateRequest;
 use CodeEduBook\Http\Requests\BookUpdateRequest;
 use CodeEduBook\Repositories\BookRepository;

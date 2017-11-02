@@ -2,8 +2,8 @@
 
 namespace CodePub\Providers;
 
-use CodePub\Repositories\UserRepository;
-use CodePub\Repositories\UserRepositoryEloquent;
+use CodeEduUser\Repositories\UserRepository;
+use CodeEduUser\Repositories\UserRepositoryEloquent;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider

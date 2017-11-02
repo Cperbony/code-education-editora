@@ -10,7 +10,7 @@
             'route' => ['categories.update', 'category' => $category->id
             ], 'class' => 'form', 'method' => 'PUT']) !!}
 
-            @include('modules.codeedubook.categories._form_links')
+            @include('modules.codeedubook.categories._form')
 
             {!! Html::openFormGroup() !!}
                 {!! Button::primary('Salvar Categoria')->submit() !!}
