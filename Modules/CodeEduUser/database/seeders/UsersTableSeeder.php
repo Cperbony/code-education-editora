@@ -17,7 +17,9 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('123456')
         ]);
 
-        factory(\CodeEduUser\Models\User::class, 1)->create();
+        factory(\CodeEduUser\Models\User::class, 1)->create([
+            'email' => 'admin@user.com',
+        ]);
     }
 
 

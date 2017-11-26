@@ -13,6 +13,10 @@ use Jrean\UserVerification\Facades\UserVerification;
  */
 class UserRepositoryEloquent extends BaseRepository implements UserRepository
 {
+    /**
+     * @param array $attributes
+     * @return mixed
+     */
     public function create(array $attributes)
     {
         $attributes['password'] = User::generatePassword();
@@ -26,7 +30,9 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
     public function update(array $attributes, $id)
     {
-        $attributes['password'] = User::generatePassword($attributes['password']);
+        if (isset($attributes['password'])) {
+            $attributes['password'] = User::generatePassword($attributes['password']);
+        }
         return parent::update($attributes, $id);
     }
 

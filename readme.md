@@ -1,9 +1,9 @@
-<h1> Desenvolvendo uma Editora Online com Laravel 5.3 </h1>
-<h2>by Code Education</h2>
-<h3>Curso Ministrado pelo <a href="https://about.me/carlosluiz">Prof. Luiz Carlos Diniz</a><h/3>
+# Desenvolvendo uma Editora Online com Laravel 5.3
+## by Code Education
+#### Curso Ministrado pelo <a href="https://about.me/carlosluiz">Prof. Luiz Carlos Diniz</a><h/3>
 <hr/>
 
-<h4>Fase 1 - Abrindo a Editora</h4>
+### Fase 1 - Abrindo a Editora
 <p>Nesta fase você deverá cria o ambiente da aplicação Laravel 5.3 mostrado no capítulo inicial, bem como o CRUD de categorias.</br>
 Você deverá criar também um CRUD para os livros da loja virtual.</br></p>
 <ul>
@@ -14,7 +14,7 @@ Você deverá criar também um CRUD para os livros da loja virtual.</br></p>
 </ul>
 <hr/>
 
-<h4>Fase 2 - Form Request Validation</h4>
+### Fase 2 - Form Request Validation
 <p>Nesta fase você deverá criar um form request validation para categoria e livro.</br>
 Crie também as regras de validação para os campos de cada modelo.</br></p>
 <p>Agora você deverá criar uma relação entre livro e autor.</p>
@@ -22,36 +22,36 @@ Crie também as regras de validação para os campos de cada modelo.</br></p>
    A edição dos dados do livro só poderá ser feita pelo próprio autor, então, teremos que usar o form request validation para autorizar isto.</p>
 <hr/>
 
-<h4>Fase 3 - Organização da área administrativa</h4>
+### Fase 3 - Organização da área administrativa
 <p>Nesta fase você deverá aplicar o Bootstrapper nos CRUD de categorias e livros.</p></br>
 <p>Além disto quando o usuário enviar dados via formulário e estes dados forem inválidos e logo em seguida o cadastro for realizado, o usuário deve ser direcionado para a página anterior (Lembrando que no momento isto não ocorre, porque se os dados forem inválidos, a URL armazenada será a da própria página).</p></br>
 <hr/>
 
-<h4>Fase 4 - Repositories e Criterias</h4>
+### Fase 4 - Repositories e Criterias
 <p>Nesta fase você deverá refatorar toda aplicação para trabalhar com repositories e criar buscas na listagem de livros e categorias.</p> 
 <hr/>
 
-<h4>Fase 5 - Exclusão lógica</h4>
-<p>Criar o relacionamento entre livros e categorias.</p>
-<p>Adicionar na busca de livros, a oportunidade de buscar livros pelo nome de um categoria por like.</p>
-<p>Implementar a exclusão lógica para livros e categorias.</p>
-<p>Criar a lixeira de livros.</p>
-<p>Estilizar as categorias excluídas quando mostradas na área de livros.</p>
-<hr/>
+### Fase 5 - Exclusão lógica
+Criar o relacionamento entre livros e categorias.<br>
+Adicionar na busca de livros, a oportunidade de buscar livros pelo nome de um categoria por like.<br>
+<p>Implementar a exclusão lógica para livros e categorias.<br>
+Criar a lixeira de livros.
+Estilizar as categorias excluídas quando mostradas na área de livros.
+<hr>
 
-<h4>Fase 6 - Criando primeiro módulo</h4>
-<p>Nesta fase, você deverá criar o módulo de administração de livros e categorias como demonstrado no capítulo.</p>
+### Fase 6 - Criando primeiro módulo
+Nesta fase, você deverá criar o módulo de administração de livros e categorias como demonstrado no capítulo.<br>
 <p>Obs.: Nas views de criação e edição, precisamos acrescentar o namespace de view para fazer o include do formulário.</p>
 <hr/>
 
-<h4>Fase 7 - Administração de Usuários</h4>
-<p>Criação da autenticação de administração de usuários.</p>
-<p>CRUD de Usuários.</p>
-<p>Integração com Laravel User Verification</p>
-<p>Envio de Email de Usuários.</p>
-<p>Controle de Usuários Não Validados.</p>
-<hr/>
-
+### Fase 7 - Começando com Autorização
+Criação da autenticação de administração de usuários.<br>
+CRUD de Usuários.<br>
+Integração com Laravel User Verification
+Envio de Email de Usuários.<br>
+Controle de Usuários Não Validados.<br>
+Nesta fase você deve implementar a autorização da área administrativa mostrada no capítulo e também toda parte de ACL. Além disto implemente um CRUD de Roles (só admins podem cadastrar roles).<br>
+O nome da Role deve ser único no banco de dados, então é necessário validar se o nome não existe e não deve ser permitido excluir a Role Admin padrão.
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 

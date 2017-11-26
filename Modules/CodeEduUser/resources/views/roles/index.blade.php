@@ -1,17 +1,17 @@
-    @extends('layouts.app')
+@extends('layouts.app')
 
 @section('content')
     <div class="container">
         <div class="row text-center">
-            <h3>Listagem de Usuários</h3>
+            <h3>Listagem de Roles</h3>
         </div>
 
         <div class="row">
-            {!! Button::primary('Novo Usuário')->asLinkTo(route('codeeduuser.users.create')) !!}
+            {!! Button::primary('Novo Role')->asLinkTo(route('codeeduuser.roles.create')) !!}
 
             {!! Form::model(compact('search'),
             ['class' => 'form-inline pull-right', 'method' => 'GET']) !!}
-            {!! Form::label('title', 'Pesquisar Usuário',
+            {!! Form::label('title', 'Pesquisar Role',
                 ['class' => 'control-label']) !!}
 
             {!! Form::text('search', null,
@@ -22,8 +22,8 @@
         </div>
         <br>
         <div class="row">
-            @Include('codeeduuser::users._form_links')
-            {{ $users->links() }}
+            @Include('codeeduuser::roles._form_links')
+            {{ $roles->links() }}
         </div>
     </div>
 @endsection
