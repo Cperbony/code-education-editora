@@ -1,4 +1,4 @@
-{{--{!! Form::hidden('redirect_to', URL::previous()) !!}--}}
+ {{--{!! Form::hidden('redirect_to', URL::previous()) !!}--}}
 
 {!! Html::openFormGroup('name', $errors) !!}
 {!! Form::label('name', 'Nome', ['class' => 'control-label']) !!}

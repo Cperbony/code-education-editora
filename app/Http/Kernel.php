@@ -54,5 +54,6 @@ class Kernel extends HttpKernel
         'guest' => \CodePub\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'isVerified' => \Jrean\UserVerification\Middleware\IsVerified::class,
+        'auth.resource' => \CodeEduUser\Http\Middleware\AuthorizationResource::class
     ];
 }

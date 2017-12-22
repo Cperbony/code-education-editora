@@ -2,30 +2,47 @@
 
 namespace CodeEduUser\Http\Controllers;
 
+use CodeEduUser\Criteria\FindPermissionsGroupCriteria;
+use CodeEduUser\Http\Requests\PermissionRequest;
 use CodeEduUser\Http\Requests\RoleRequest;
+use CodeEduUser\Repositories\PermissionRepository;
 use CodeEduUser\Repositories\RoleRepository;
+use CodeEduUser\Criteria\FindPermissionsResourceCriteria;
 use CodePub\Http\Controllers\Controller;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Response;
+use CodeEduUser\Annotations\Mapping as Permission;
 
+/**
+ * Class RoleController
+ * @package CodeEduUser\Http\Controllers
+ * @Permission\ControllerAnnotation(name="roles-admin", description="Administração de papéis de usuários")
+ */
 class RoleController extends Controller
 {
     /**
      * @var RoleRepository
      */
     private $repository;
+    /**
+     * @var PermissionRepository
+     */
+    private $permissionRepository;
 
     /**
      * RoleController constructor.
      * @param RoleRepository $repository
+     * @param PermissionRepository $permissionRepository
      */
-    public function __construct(RoleRepository $repository)
+    public function __construct(RoleRepository $repository, PermissionRepository $permissionRepository)
     {
         $this->repository = $repository;
+        $this->permissionRepository = $permissionRepository;
     }
 
     /**
      * Display a listing of the resource.
-     *
+     * @Permission\Action(name="list", description="Listar papéis de usuários")
      * @return Response
      */
     public function index()
@@ -36,7 +53,7 @@ class RoleController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
+     * @Permission\Action(name="store", description="Cadastrar papéis de usuários")
      * @return Response
      */
     public function create()
@@ -46,7 +63,7 @@ class RoleController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * @Permission\Action(name="store", description="Cadastrar papéis de usuários")
      * @param RoleRequest $request
      * @return Response
      */
@@ -54,6 +71,7 @@ class RoleController extends Controller
     {
         $this->repository->create($request->all());
         $url = $request->get('redirect_to', route('codeeduuser.roles.index'));
+        $request->session()->flash('message', 'Papel de usuário cadastrado com sucesso');
         return redirect()->to($url);
     }
 
@@ -70,42 +88,68 @@ class RoleController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
+     * @Permission\Action(name="edit", description="Editar papéis de usuários")
      * @param  int $id
      * @return Response
      */
     public function edit($id)
     {
         $role = $this->repository->find($id);
-        return view('codeeduuser::roles.edit', compact('role'));
+        $this->permissionRepository->pushCriteria(new FindPermissionsResourceCriteria());
+        $permissions = $this->permissionRepository->all();
+        return view('codeeduuser::roles.edit', compact('role', 'permissions'));
     }
 
     /**
      * Update the specified resource in storage.
-     *
+     * @Permission\Action(name="update", description="Atualizar papéis de usuários")
      * @param RoleRequest $request
      * @param  int $id
      * @return Response
      */
     public function update(RoleRequest $request, $id)
     {
-        $this->repository->update($request->all(), $id);
+        $data = $request->except('permissions');
+        $this->repository->update($data, $id);
         $url = $request->get('redirect_to', route('codeeduuser.roles.index'));
-        $request->session()->flash('message', 'Role Editada Com Sucesso!');
+        $request->session()->flash('message', 'Papel de Usuário Editado Com Sucesso!');
         return redirect()->to($url);
     }
 
     /**
      * Remove the specified resource from storage.
-     *
+     * @Permission\Action(name="destroy", description="Excluir papéis de usuários")
      * @param RoleRequest $request
      * @param  int $id
      * @return Response
      */
     public function destroy(RoleRequest $request, $id)
     {
-        $this->repository->delete($id);
-        \Session::flash('message', 'Role Removida Com Sucesso!');
+        try{
+            $this->repository->delete($id);
+            \Session::flash('message', 'Papel de usuário Removido Com Sucesso!');
+        }catch (QueryException $ex) {
+            \Session::flash('error', 'Papel de usuário não pode ser Removido. O mesmo esta relacionado com outros registros!');
+        }
         return redirect()->to(\URL::previous());
+    }
+
+    public function editPermission($id) {
+        $role = $this->repository->find($id);
+        $this->permissionRepository->pushCriteria(new FindPermissionsResourceCriteria());
+        $permissions = $this->permissionRepository->all();
+
+        $this->permissionRepository->resetCriteria();
+        $this->permissionRepository->pushCriteria(new FindPermissionsGroupCriteria());
+        $permissionsGroup = $this->permissionRepository->all(['name', 'description']);
+        return view('codeeduuser::roles.permissions', compact('role', 'permissions', 'permissionsGroup'));
+    }
+
+    public function updatePermission(PermissionRequest $request, $id    ) {
+        $data = $request->only('permissions');
+        $this->repository->update($data, $id);
+        $url = $request->get('redirect_to', route('codeeduuser.roles.index'));
+        $request->session()->flash('message', 'Permissões atribuídas com Sucesso!');
+        return redirect()->to($url);
     }
 }

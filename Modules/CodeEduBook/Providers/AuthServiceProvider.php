@@ -1,7 +1,9 @@
 <?php
 
-namespace CodePub\Providers;
+namespace CodeEduBook\Providers;
 
+use CodeEduUser\Criteria\FindPermissionsResourceCriteria;
+use CodeEduUser\Repositories\PermissionRepository;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -23,5 +25,9 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+
+        \Gate::define('update-book', function ($user, $book) {
+            return $user->id == $book->author_id;
+        });
     }
 }

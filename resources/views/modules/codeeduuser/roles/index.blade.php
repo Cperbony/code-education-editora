@@ -7,7 +7,7 @@
         </div>
 
         <div class="row">
-            {!! Button::primary('Novo Role')->asLinkTo(route('codeeduuser.roles.create')) !!}
+            {!! Button::primary('Nova Role')->asLinkTo(route('codeeduuser.roles.create')) !!}
 
             {!! Form::model(compact('search'),
             ['class' => 'form-inline pull-right', 'method' => 'GET']) !!}

@@ -2,6 +2,13 @@
 
 namespace CodeEduUser\Providers;
 
+use CodeEduUser\Annotations\Mapping\ControllerAnnotation;
+use CodeEduUser\Annotations\PermissionReader;
+use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Annotations\AnnotationRegistry;
+use Doctrine\Common\Annotations\CachedReader;
+use Doctrine\Common\Annotations\Reader;
+use Doctrine\Common\Cache\FilesystemCache;
 use Illuminate\Support\ServiceProvider;
 use Jrean\UserVerification\UserVerificationServiceProvider;
 
@@ -25,6 +32,11 @@ class CodeEduUserServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->publishMigrationsAndSeeders();
+
+        /** @var Reader $reader */
+        $reader = app(PermissionReader::class);
+//        dd($reader->getPermissions());
+
     }
 
     /**
@@ -34,12 +46,37 @@ class CodeEduUserServiceProvider extends ServiceProvider
      */
     public function register()
     {
-       $this->app->register(UserVerificationServiceProvider::class);
+        $this->app->register(UserVerificationServiceProvider::class);
         $this->app->register(RepositoryServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
+        $this->app->register(AuthServiceProvider::class);
+        $this->registerAnnotations();
+
+        $this->app->bind(Reader::class, function () {
+            return new CachedReader(
+                new AnnotationReader(),
+                new FilesystemCache(storage_path('framework/cache/doctrine-annotations')),
+                $debug = env('APP_DEBUG')
+            );
+        });
+
+        $this->app->bind('permission-reader', function() {
+           return new PermissionReader(app(Reader::class));
+        });
     }
 
-    public function publishMigrationsAndSeeders() {
+    /**
+     *
+     */
+    protected function registerAnnotations()
+    {
+        //Registra as anotações e faz o require e o include.
+        $loader = require __DIR__ . '/../../../vendor/autoload.php';
+        AnnotationRegistry::registerLoader([$loader, 'loadClass']);
+    }
+
+    public function publishMigrationsAndSeeders()
+    {
         $sourcePath = __DIR__ . '/../database/migrations';
 
         $this->publishes([
@@ -61,10 +98,10 @@ class CodeEduUserServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            __DIR__.'/../Config/config.php' => config_path('codeeduuser.php'),
+            __DIR__ . '/../Config/config.php' => config_path('codeeduuser.php'),
         ], 'config');
         $this->mergeConfigFrom(
-            __DIR__.'/../Config/config.php', 'codeeduuser'
+            __DIR__ . '/../Config/config.php', 'codeeduuser'
         );
     }
 
@@ -77,7 +114,7 @@ class CodeEduUserServiceProvider extends ServiceProvider
     {
         $viewPath = base_path('resources/views/modules/codeeduuser');
 
-        $sourcePath = __DIR__.'/../resources/views';
+        $sourcePath = __DIR__ . '/../resources/views';
 
         $this->publishes([
             $sourcePath => $viewPath
@@ -100,7 +137,7 @@ class CodeEduUserServiceProvider extends ServiceProvider
         if (is_dir($langPath)) {
             $this->loadTranslationsFrom($langPath, 'codeeduuser');
         } else {
-            $this->loadTranslationsFrom(__DIR__ .'/../resources/lang', 'codeeduuser');
+            $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'codeeduuser');
         }
     }
 

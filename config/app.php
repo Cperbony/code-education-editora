@@ -270,6 +270,7 @@ return [
 
         // jrean/laravel-user-verification
         'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
+        'PermissionReader' => \CodeEduUser\Facade\PermissionReader::class,
 
     ],
 

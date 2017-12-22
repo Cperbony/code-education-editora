@@ -3,15 +3,15 @@
 @section('content')
     <div class="container">
         <div class="row text-center">
-            <h3>Listagem de Roles</h3>
+            <h3>Listagem de Papel de Usuários</h3>
         </div>
 
         <div class="row">
-            {!! Button::primary('Novo Role')->asLinkTo(route('codeeduuser.roles.create')) !!}
+            {!! Button::primary('Novo Papel de Usuário')->asLinkTo(route('codeeduuser.roles.create')) !!}
 
             {!! Form::model(compact('search'),
             ['class' => 'form-inline pull-right', 'method' => 'GET']) !!}
-            {!! Form::label('title', 'Pesquisar Role',
+            {!! Form::label('title', 'Pesquisar papel de Usuário',
                 ['class' => 'control-label']) !!}
 
             {!! Form::text('search', null,

@@ -11,6 +11,11 @@ namespace CodeEduUser\Http\Controllers;
 use CodeEduUser\Http\Requests\UserSettingRequest;
 use CodeEduUser\Repositories\UserRepository;
 
+/**
+ * Display a listing of the resource.
+ * @param Request $request
+ * @return \Illuminate\Http\Response
+ */
 class UserSettingsController extends Controller
 {
 

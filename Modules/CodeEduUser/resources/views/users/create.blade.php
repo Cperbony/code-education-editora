@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h3>Nova Usuário</h3>
+            <h3>Novo Usuário</h3>
 
             {{--@include('errors._errors_form')--}}
             {!! Form::open(['route' => 'codeeduuser.users.store', 'class' => 'form']) !!}

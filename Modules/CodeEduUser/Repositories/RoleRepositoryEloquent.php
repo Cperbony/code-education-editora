@@ -2,11 +2,9 @@
 
 namespace CodeEduUser\Repositories;
 
+use CodeEduUser\Models\Role;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use CodeEduUser\Repositories\RoleRepository;
-use CodePub\Models\Role;
-use CodePub\Validators\RoleValidator;
 
 /**
  * Class RoleRepositoryEloquent
@@ -14,6 +12,21 @@ use CodePub\Validators\RoleValidator;
  */
 class RoleRepositoryEloquent extends BaseRepository implements RoleRepository
 {
+    /**
+     * @param array $attributes
+     * @param $id
+     * @return mixed|void
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     */
+    public function update(array $attributes, $id)
+    {
+        $model =  parent::update($attributes, $id);
+        if(isset($attributes['permissions'])) {
+            $model->permissions()->sync($attributes['permissions']);
+        }
+        return $model;
+    }
+
     /**
      * Specify Model class name
      *
@@ -24,13 +37,24 @@ class RoleRepositoryEloquent extends BaseRepository implements RoleRepository
         return Role::class;
     }
 
-    
 
     /**
      * Boot up the repository, pushing criteria
+     * @throws \Prettus\Repository\Exceptions\RepositoryException
      */
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+    }
+
+    public function updatePermission(array $data, $id)
+    {
+       $role = $this->find($id);
+        $role->permissions()->detach();
+
+        if(count($data)) {
+            $role->permissions()->sync($data);
+        }
+        return $role;
     }
 }

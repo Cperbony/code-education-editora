@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h3>Editar Role</h3>
+            <h3>Editar Papel de usuário</h3>
 
             {{--@include('errors._errors_form')--}}
             {!! Form::model($role, [
@@ -13,7 +13,7 @@
             @include('codeeduuser::roles._form')
 
             {!! Html::openFormGroup() !!}
-                {!! Button::primary('Salvar Role')->submit() !!}
+                {!! Button::primary('Salvar')->submit() !!}
             {!! Html::closeFormGroup() !!}
 
             {!! Form::close() !!}

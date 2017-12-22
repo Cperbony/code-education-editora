@@ -11,3 +11,9 @@
 {!! Form::text('description', null, ['class' => 'form-control']) !!}
 {!! Form::error('description', $errors) !!}
 {!! Html::closeFormGroup() !!}
+
+{!! Html::openFormGroup('roles.*', $errors) !!}
+{!! Form::label('roles[]', 'Papel de Usuário', ['class' => 'control-label']) !!}
+{!! Form::select('roles[]', $roles, null, ['class' => 'form-control', 'multiple' => true]) !!}
+{!! Form::error('roles.*', $errors) !!}
+{!! Html::closeFormGroup() !!}

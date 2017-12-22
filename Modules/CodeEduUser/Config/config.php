@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'name' => 'CodeEduUser',
+//    'name' => 'CodeEduUser',
     'email' => [
         'user_created' => [
             'subject' => config('app.name') . ' - Sua Conta foi Criada com Sucesso'
@@ -16,6 +16,9 @@ return [
         'password' => env('USER_PASSWORD', 'secret')
     ],
     'acl' => [
-        'role_admin' => env('ROLE_ADMIN', 'Admin')
+        'role_admin' => env('ROLE_ADMIN', 'Admin'),
+        'controllers_annotations' => [
+            __DIR__ . '/../Http/Controllers'
+        ]
     ]
 ];
