@@ -24,27 +24,28 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerPolicies();
+        if (!(app()->runningInConsole() || app()->runningUnitTests())) {
+            $this->registerPolicies();
 
-        \Gate::before(function ($user, $ability) {
-            //True - Autorizado
-            //False - Não autorizado
-            //void - executar a habilidade em questão
-            if ($user->isAdmin()) {
-                return true;
-            }
-        });
-
-        /** @var PermissionRepository $permissionRepository */
-        $permissionRepository = app(PermissionRepository::class);
-        $permissionRepository->pushCriteria(new FindPermissionsResourceCriteria());
-//        dd($permissions = $permissionRepository->all());
-        $permissions = $permissionRepository->all();
-        foreach ($permissions as $p) {
-            \Gate::define("{$p->name}/{$p->resource_name}", function ($user) use ($p) {
-                return $user->hasRole($p->roles);
+            \Gate::before(function ($user, $ability) {
+                //True - Autorizado
+                //False - Não autorizado
+                //void - executar a habilidade em questão
+                if ($user->isAdmin()) {
+                    return true;
+                }
             });
-        }
 
+            /** @var PermissionRepository $permissionRepository */
+            $permissionRepository = app(PermissionRepository::class);
+            $permissionRepository->pushCriteria(new FindPermissionsResourceCriteria());
+//        dd($permissions = $permissionRepository->all());
+            $permissions = $permissionRepository->all();
+            foreach ($permissions as $p) {
+                \Gate::define("{$p->name}/{$p->resource_name}", function ($user) use ($p) {
+                    return $user->hasRole($p->roles);
+                });
+            }
+        }
     }
 }

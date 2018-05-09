@@ -82,7 +82,7 @@ class PermissionReader
         $files = [];
         foreach ($dirs as $dir) {
             foreach (\File::allFiles($dir) as $file) {
-                echo $file;
+//                echo $file;
                 $files[] = $file->getRealPath();
                 require_once $file->getRealPath();
             }

@@ -1,4 +1,4 @@
- {{--{!! Form::hidden('redirect_to', URL::previous()) !!}--}}
+ {!! Form::hidden('redirect_to', URL::previous()) !!}
 
 {!! Html::openFormGroup('name', $errors) !!}
 {!! Form::label('name', 'Nome', ['class' => 'control-label']) !!}
@@ -6,8 +6,8 @@
 {!! Form::error('name', $errors) !!}
 {!! Html::closeFormGroup() !!}
 
-{!! Html::openFormGroup('email', $errors) !!}
-{!! Form::label('email', 'E-mail', ['class' => 'control-label']) !!}
-{!! Form::text('email', null, ['class' => 'form-control']) !!}
-{!! Form::error('email', $errors) !!}
+{!! Html::openFormGroup('description', $errors) !!}
+{!! Form::label('description', 'Descrição', ['class' => 'control-label']) !!}
+{!! Form::text('description', null, ['class' => 'form-control']) !!}
+{!! Form::error('description', $errors) !!}
 {!! Html::closeFormGroup() !!}

@@ -18,7 +18,7 @@ use CodeEduUser\Annotations\Mapping as Permission;
  * @package CodeEduUser\Http\Controllers
  * @Permission\ControllerAnnotation(name="roles-admin", description="Administração de papéis de usuários")
  */
-class RoleController extends Controller
+class RolesController extends Controller
 {
     /**
      * @var RoleRepository

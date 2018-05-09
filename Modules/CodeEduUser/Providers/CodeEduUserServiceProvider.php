@@ -2,8 +2,8 @@
 
 namespace CodeEduUser\Providers;
 
-use CodeEduUser\Annotations\Mapping\ControllerAnnotation;
 use CodeEduUser\Annotations\PermissionReader;
+use CodeEduUser\Http\Controllers\UsersController;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Doctrine\Common\Annotations\CachedReader;
@@ -33,10 +33,9 @@ class CodeEduUserServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->publishMigrationsAndSeeders();
 
-        /** @var Reader $reader */
+        /** @var PermissionReader $reader */
         $reader = app(PermissionReader::class);
 //        dd($reader->getPermissions());
-
     }
 
     /**
@@ -60,8 +59,8 @@ class CodeEduUserServiceProvider extends ServiceProvider
             );
         });
 
-        $this->app->bind('permission-reader', function() {
-           return new PermissionReader(app(Reader::class));
+        $this->app->bind('permission-reader', function () {
+            return new PermissionReader(app(Reader::class));
         });
     }
 

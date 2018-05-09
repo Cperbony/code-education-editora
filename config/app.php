@@ -238,6 +238,7 @@ return [
 //        Laravel Collective => Collective\Html\
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+
 /* Aliases movidas para o AppServiceProvider.register()*/
 //        BOOTSTRAPPER => Bootstrapper\Facades\
 //        'Accordion' => Bootstrapper\Facades\Accordion::class,

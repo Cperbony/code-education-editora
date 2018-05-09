@@ -18,7 +18,6 @@ class BookUpdateRequest extends BookCreateRequest
      */
     public function __construct(BookRepository $repository)
     {
-
         $this->repository = $repository;
     }
 
@@ -34,7 +33,7 @@ class BookUpdateRequest extends BookCreateRequest
             return false;
         }
         $book = $this->repository->find($id);
-
-        return \Gate::allows('update-book', $book);
+        $user = \Auth::user();
+        return $user->can('update', $book);
     }
 }

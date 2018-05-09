@@ -25,16 +25,22 @@ class CreatePermissionCommand extends Command
      * @var PermissionRepository
      */
     private $repository;
+    /**
+     * @var PermissionReader
+     */
+    private $reader;
 
     /**
      * Create a new command instance.
      *
      * @param PermissionRepository $repository
+     * @param PermissionReader $reader
      */
-    public function __construct(PermissionRepository $repository)
+    public function __construct(PermissionRepository $repository, PermissionReader $reader)
     {
         parent::__construct();
         $this->repository = $repository;
+        $this->reader = $reader;
     }
 
     /**
@@ -44,7 +50,7 @@ class CreatePermissionCommand extends Command
      */
     public function fire()
     {
-        $permissions = PermissionReader::getPermissions();
+        $permissions = $this->reader::getPermissions();
         foreach ($permissions as $permission) {
             if (!$this->existsPermission($permission)){
             $this->repository->create($permission);

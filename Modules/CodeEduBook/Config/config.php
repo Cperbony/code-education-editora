@@ -1,5 +1,8 @@
 <?php
 
 return [
-    'name' => 'CodeEduBook'
+    'name' => 'CodeEduBook',
+    'acl' => [
+        'role_author' => env('ROLE_AUTHOR', 'Author'),
+    ]
 ];

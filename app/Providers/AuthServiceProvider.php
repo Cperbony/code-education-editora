@@ -23,5 +23,22 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+
+        \Gate::define('update-book', function ($user, $book) {
+            return $user->id == $book->author_id;
+        });
+
+        \Gate::before(function ($user, $ability) {
+            //Retornou True = Autorizado
+            ////Retornou False = Não Autorizado
+            /// //Retornou Void = Vai executar a habilidade em questão.
+            if ($user->isAdmin()) {
+                return true;
+            }
+        });
+
+//        \Gate::define('user-admin', function ($user) {
+//            return false;
+//        });
     }
 }

@@ -3,7 +3,7 @@
 namespace CodeEduUser\Annotations\Mapping;
 
 /**
- * Class Controller
+ * Class ControllerAnnotation
  * @package CodeEduUser\Annotations\Mapping
  * @Annotation
  * @target("CLASS")

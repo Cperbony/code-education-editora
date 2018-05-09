@@ -11,6 +11,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Prettus\Repository\Traits\TransformableTrait;
 
+/**
+ * @property mixed author_id
+ */
 class Book extends Model implements TableInterface
 {
     use TransformableTrait;
