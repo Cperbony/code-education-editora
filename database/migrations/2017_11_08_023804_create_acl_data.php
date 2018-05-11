@@ -18,7 +18,7 @@ class CreateAclData extends Migration
             'description' => 'Papel de Usuário mestre do Sistema'
         ]);
 
-        $user = User::where('email', config('codeeduuser.user_default.email'))->first();
+        $user = (new CodeEduUser\Models\User)->where('email', config('codeeduuser.user_default.email'))->first();
         $user->roles()->save($roleAdmin);
 
     }
@@ -30,15 +30,13 @@ class CreateAclData extends Migration
      */
     public function down()
     {
+        $roleAdmin = Role::where('name', config('codeeduuser.acl.role_admin'))->first();
 
-        $roleAdmin = (new CodeEduUser\Models\Role)->where('name', config('codeeduuser.acl.role_admin'))->first();
-
-        $user = (new CodeEduUser\Models\User)->where('email', config('codeeduser.user_default.email'))->first();
-
+        $user = User::where('email', config('codeeduuser.user_default.email'))
+            ->first();
         $user->roles()->detach($roleAdmin->id);
         $roleAdmin->permissions()->detach();
         $roleAdmin->users()->detach();
         $roleAdmin->delete();
-
     }
 }

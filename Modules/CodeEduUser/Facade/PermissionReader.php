@@ -3,7 +3,7 @@
 namespace CodeEduUser\Facade;
 
 use Illuminate\Support\Facades\Facade;
-use CodeEduUser\Annotations\PermissionReader as PermissionReaderService;
+use CodeEduUser\Annotations\PermissionReader as PermissionsReaderService;
 
 /**
  * Created by PhpStorm.
@@ -11,12 +11,10 @@ use CodeEduUser\Annotations\PermissionReader as PermissionReaderService;
  * Date: 21/12/2017
  * Time: 00:19
  */
-
 class PermissionReader extends Facade
 {
-    public static function getFacadeAccessor()
+    protected static function getFacadeAccessor()
     {
-        return PermissionReaderService::class;
+        return PermissionsReaderService::class;
     }
-
 }

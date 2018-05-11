@@ -2,10 +2,18 @@
 
 namespace CodeEduBook\Http\Controllers;
 
+use CodeEduUser\Annotations\Mapping as Permission;
 use CodePub\Http\Controllers\Controller;
 use CodeEduBook\Repositories\BookRepository;
 
 use Illuminate\Http\Request;
+
+/**
+ * Class BooksTrashedController
+ * @package CodeEduBook\Http\Controllers
+ *
+ * @Permission\Controller(name="books-thrashed-admin", description="Administração de Livros na Lixeira")
+ */
 
 class BooksTrashedController extends Controller
 {
@@ -24,7 +32,7 @@ class BooksTrashedController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * @Permission\Action(name="list", description="Listar Livros na Lixeira")
      *
      * @param Request $request
      * @return \Illuminate\Http\Response
@@ -38,6 +46,12 @@ class BooksTrashedController extends Controller
         return view('codeedubook::trashed.books.index', compact('books', 'search'));
     }
 
+    /**
+     * @Permission\Action(name="list", description="Listar Livros na Lixeira")
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show($id)
     {
         $this->repository->onlyTrashed();
@@ -47,6 +61,8 @@ class BooksTrashedController extends Controller
     }
 
     /**
+     * @Permission\Action(name="update", description="Atualizar Livros na Lixeira")
+     *
      * @param Request $request
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
@@ -60,7 +76,5 @@ class BooksTrashedController extends Controller
         $request->session()->flash('message', 'Livro Restaurado com Sucesso!');
 
         return redirect()->to($url);
-
     }
-
 }

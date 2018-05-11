@@ -11,11 +11,13 @@ class Role extends Model implements TableInterface
         'name', 'description'
     ];
 
-    public function permissions() {
-        $this->belongsToMany(Permission::class);
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class);
     }
 
-    public function users() {
+    public function users()
+    {
         return $this->belongsToMany(User::class);
     }
 

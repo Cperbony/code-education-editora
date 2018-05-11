@@ -6,6 +6,8 @@ use CodeEduBook\Repositories\BookRepository;
 use CodeEduBook\Repositories\BookRepositoryEloquent;
 use CodeEduBook\Repositories\CategoryRepository;
 use CodeEduBook\Repositories\CategoryRepositoryEloquent;
+use CodeEduUser\Repositories\PermissionRepository;
+use CodeEduUser\Repositories\PermissionRepositoryEloquent;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -26,6 +28,7 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(CategoryRepository::class, CategoryRepositoryEloquent::class);
         $this->app->bind(BookRepository::class, BookRepositoryEloquent::class);
+        $this->app->bind(PermissionRepository::class, PermissionRepositoryEloquent::class);
     }
 
     /**

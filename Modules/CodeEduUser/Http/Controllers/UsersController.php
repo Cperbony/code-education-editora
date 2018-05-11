@@ -2,7 +2,7 @@
 
 namespace CodeEduUser\Http\Controllers;
 
-use CodeEduUser\Annotations\Mapping\ControllerAnnotation;
+use CodeEduUser\Annotations\Mapping as Permission;
 use CodeEduUser\Http\Requests\UserDeleteRequest;
 use CodeEduUser\Http\Requests\UserRequest;
 use CodeEduUser\Repositories\RoleRepository;
@@ -12,9 +12,10 @@ use Illuminate\Http\Request;
 /**
  * Class UsersController
  * @package CodeEduUser\Http\Controllers
- * @ControllerAnnotation(name="users-admin", description="Administração de Usuários")
+ *
+ * @Permission\Controller(name="users-admin", description="Administração de Usuários")
  */
-class UsersController extends ControllerAnnotation
+class UsersController extends Controller
 {
     /**
      * @var \CodeEduUser\Repositories\UserRepository
@@ -37,9 +38,9 @@ class UsersController extends ControllerAnnotation
     }
 
     /**
-     * Display a listing of the resource.
+     * @Permission\Action(name="list", description="Ver Listagem de usuários")
+     *
      * @param Request $request
-     * @ActionAnnotation(name="list", description="Ver Listagem de usuários")
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -52,8 +53,8 @@ class UsersController extends ControllerAnnotation
 
 
     /**
-     * Show the form for creating a new resource.
-     * @ActionAnnotation(name="create", description="Criar usuários")
+     * @Permission\Action(name="create", description="Criar usuários")
+     *
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -63,8 +64,8 @@ class UsersController extends ControllerAnnotation
     }
 
     /**
-     * Store a newly created resource in storage.
-     * @ActionAnnotation(name="store", description="Salvar usuários")
+     * @Permission\Action(name="store", description="Criar usuários")
+     *
      * @param UserRequest $request
      * @return \Illuminate\Http\Response
      */
@@ -78,20 +79,10 @@ class UsersController extends ControllerAnnotation
         return redirect()->to($url);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return void
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
-     * Show the form for editing the specified resource.
-     * @ActionAnnotation((name="edit", description="Editar usuários")
+     * @Permission\Action(name="edit", description="Editar usuários")
+     *
      * @param $id
      * @return \Illuminate\Http\Response
      * @internal param int $id
@@ -104,8 +95,8 @@ class UsersController extends ControllerAnnotation
     }
 
     /**
-     * Update the specified resource in storage.
-     * @ActionAnnotation(name="update", description="Atualizar usuários")
+     * @Permission\Action(name="update", description="Atualizar usuários")
+     *
      * @param UserRequest|Request $request
      * @param $id
      * @return \Illuminate\Http\Response
@@ -123,8 +114,7 @@ class UsersController extends ControllerAnnotation
 
 
     /**
-     * Remove the specified resource from storage.
-     * @ActionAnnotation(name="destroy", description="Deletar usuários")
+     * @Permission\Action(name="destroy", description="Remover usuários")
      *
      * @param UserDeleteRequest $request
      * @param $id

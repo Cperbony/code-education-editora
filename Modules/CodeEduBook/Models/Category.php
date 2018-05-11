@@ -16,7 +16,7 @@ class Category extends Model implements TableInterface
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'name'
+        'name',
     ];
 
 

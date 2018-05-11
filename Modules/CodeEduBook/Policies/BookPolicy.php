@@ -19,6 +19,6 @@ class BookPolicy
      */
     public function update(User $user, Book $book)
     {
-        return $user->id = $book->author_id;
+        return $user->id == $book->author_id;
     }
 }

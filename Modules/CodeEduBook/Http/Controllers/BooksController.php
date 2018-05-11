@@ -2,27 +2,23 @@
 
 namespace CodeEduBook\Http\Controllers;
 
+use CodeEduBook\Models\Book;
+use CodeEduUser\Annotations\Mapping as Permission;
 use CodeEduBook\Http\Requests\BookCreateRequest;
 use CodeEduBook\Http\Requests\BookUpdateRequest;
 use CodeEduBook\Repositories\BookRepository;
 use CodeEduBook\Repositories\CategoryRepository;
+use CodePub\Criteria\FindByAuthorCriteria;
 use Illuminate\Http\Request;
 
 /**
  * Class BooksController
  * @package CodeEduBook\Http\Controllers
- * @Permission\Controller(name="books-admin", description="Administração de livros")
+ *
+ * @Permission\Controller(name="books-admin", description="Administração de Livros")
  */
-
-if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
-    // Ignores notices and reports all other kinds... and warnings
-    error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
-    // error_reporting(E_ALL ^ E_WARNING); // Maybe this is enough
-}
-
 class BooksController extends Controller
 {
-
     /**
      * @var \CodeEduBook\Repositories\BookRepository
      */
@@ -40,11 +36,12 @@ class BooksController extends Controller
     function __construct(BookRepository $repository, CategoryRepository $categoryRepository)
     {
         $this->repository = $repository;
+        $this->repository->pushCriteria(new FindByAuthorCriteria());
         $this->categoryRepository = $categoryRepository;
     }
 
     /**
-     * Display a listing of the resource.
+     * @Permission\Action(name="list", description="Ver Listagem de Livros")
      *
      * @param Request $request
      * @return \Illuminate\Http\Response
@@ -60,7 +57,7 @@ class BooksController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * @Permission\Action(name="create", description="Cadastrar Livros")
      *
      * @return \Illuminate\Http\Response
      */
@@ -71,7 +68,7 @@ class BooksController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @Permission\Action(name="create", description="Cadastrar Livros")
      *
      * @param BookCreateRequest $request
      * @return \Illuminate\Http\Response
@@ -88,25 +85,14 @@ class BooksController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @Permission\Action(name="edit", description="Editar Livros")
      *
-     * @param  int $id
+     * @param Book $book
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function edit(Book $book)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $book = $this->repository->find($id);
+//        $book = $this->repository->find($id);
         $this->categoryRepository->withTrashed();
 //        $categories = Category::withTrashed()->pluck('name', 'id');
         $categories = $this->categoryRepository->listsWithMutators('name_trashed', 'id');
@@ -114,7 +100,7 @@ class BooksController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @Permission\Action(name="update", description="Atualizar Livros")
      *
      * @param BookUpdateRequest $request
      * @param $id
@@ -133,7 +119,7 @@ class BooksController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @Permission\Action(name="delete", description="Remover Livros")
      * @param $id
      * @return \Illuminate\Http\Response
      * @internal param int $id

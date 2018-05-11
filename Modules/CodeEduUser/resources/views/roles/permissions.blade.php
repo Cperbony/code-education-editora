@@ -26,7 +26,7 @@
                                 <div class="checkbox">
                                     <label for="">
                                     <input type="checkbox" name="permissions[]" value="{{$permission->id}}"
-{{ $role->permissions->contains('id', $permission->id) ?'checked="checked"' : ''}}/>
+{{ $role->permissions->contains('id', $permission->id) ? 'checked="checked"' : ''}}/>
                                         {{$permission->resource_description}}
                                     </label>
                                 </div>
@@ -37,7 +37,6 @@
         </li>
     @endforeach
 </ul>
-
 
             {!! Html::openFormGroup() !!}
             {!! Button::primary('Salvar')->submit() !!}

@@ -2,10 +2,17 @@
 
 namespace CodeEduBook\Http\Controllers;
 
+use CodeEduUser\Annotations\Mapping as Permission;
 use CodeEduBook\Http\Requests\CategoryRequest;
 use CodeEduBook\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 
+/**
+ * Class CategoriesController
+ * @package CodeEduBook\Http\Controllers
+ *
+ * @Permission\Controller(name="categories-admin", description="Administração de Categorias")
+ */
 class CategoriesController extends Controller
 {
 
@@ -25,7 +32,7 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * @Permission\Action(name="list", description="Listar Categorias")
      *
      * @param Request $request
      * @return \Illuminate\Http\Response
@@ -38,10 +45,8 @@ class CategoriesController extends Controller
         return view('codeedubook::categories.index', compact('categories', 'search'));
     }
 
-
-
     /**
-     * Show the form for creating a new resource.
+     * @Permission\Action(name="create", description="Criar Categorias")
      *
      * @return \Illuminate\Http\Response
      */
@@ -51,7 +56,7 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @Permission\Action(name="store", description="Criar Categorias")
      *
      * @param CategoryRequest $request
      * @return \Illuminate\Http\Response
@@ -66,19 +71,8 @@ class CategoriesController extends Controller
         return redirect()->to($url);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
+      /**
+     * @Permission\Action(name="edit", description="Editar Categorias")
      *
      * @param $id
      * @return \Illuminate\Http\Response
@@ -91,7 +85,7 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @Permission\Action(name="update", description="Atualizar Categorias")
      *
      * @param CategoryRequest|Request $request
      * @param $id
@@ -108,9 +102,8 @@ class CategoriesController extends Controller
         return redirect()->to($url);
     }
 
-
     /**
-     * Remove the specified resource from storage.
+     * @Permission\Action(name="delete", description="Remover Categorias")
      *
      * @param $id
      * @return \Illuminate\Http\Response

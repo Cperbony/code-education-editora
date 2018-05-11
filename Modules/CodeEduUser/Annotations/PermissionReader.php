@@ -1,15 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Claus Perbony
- * Date: 27/11/2017
- * Time: 22:20
- */
 
 namespace CodeEduUser\Annotations;
 
 use CodeEduUser\Annotations\Mapping\Action;
-use CodeEduUser\Annotations\Mapping\ControllerAnnotation;
+use CodeEduUser\Annotations\Mapping\Controller;
 use Doctrine\Common\Annotations\Reader;
 
 class PermissionReader
@@ -50,8 +44,8 @@ class PermissionReader
     public function getPermission($controllerClass, $action = null)
     {
         $rc = new \ReflectionClass($controllerClass);
-        /** @var ControllerAnnotation $controllerAnnotation */
-        $controllerAnnotation = $this->reader->getClassAnnotation($rc, ControllerAnnotation::class);
+        /** @var Controller $controllerAnnotation */
+        $controllerAnnotation = $this->reader->getClassAnnotation($rc, Controller::class);
         $permissions = [];
         if ($controllerAnnotation) {
             $permission = [

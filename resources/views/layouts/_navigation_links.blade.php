@@ -19,19 +19,19 @@ if (Auth::check()) {
                 ]
             ]
         ],
-        [
-            'Usuários',
-            [
-                [
-                    'link' => route('codeeduuser.users.index'),
-                    'title' => 'Usuários'
-                ],
-                [
-                    'link' => route('codeeduuser.roles.index'),
-                    'title' => 'Papel de usuário'
-                ],
-            ]
-        ]
+//        [
+//            'Usuários',
+//            [
+//                [
+//                    'link' => route('codeeduuser.users.index'),
+//                    'title' => 'Usuários'
+//                ],
+//                [
+//                    'link' => route('codeeduuser.roles.index'),
+//                    'title' => 'Papel de usuário'
+//                ],
+//            ]
+//        ]
     ];
     if (Auth::user()->can('users-admin/list')) {
         $arrayLinks [] = [

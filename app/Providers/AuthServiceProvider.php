@@ -24,21 +24,33 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        \Gate::define('update-book', function ($user, $book) {
-            return $user->id == $book->author_id;
-        });
-
-        \Gate::before(function ($user, $ability) {
-            //Retornou True = Autorizado
-            ////Retornou False = Não Autorizado
-            /// //Retornou Void = Vai executar a habilidade em questão.
-            if ($user->isAdmin()) {
-                return true;
-            }
-        });
-
-//        \Gate::define('user-admin', function ($user) {
-//            return false;
+//        \Gate::define('update-book', function ($user, $book) {
+//            return $user->id == $book->author_id;
 //        });
+//
+//        \Gate::before(function ($user, $ability) {
+//            //Retornou True = Autorizado
+//            ////Retornou False = Não Autorizado
+//            /// //Retornou Void = Vai executar a habilidade em questão.
+//            if ($user->isAdmin()) {
+//                return true;
+//            }
+//        });
+//
+//        /** @var PermissionRepository $permissionRepository */
+//        $permissionRepository = app(PermissionRepository::class);
+//        $permissionRepository->pushCriteria(new FindPermissionsResourceCriteria());
+//        $permissions = $permissionRepository->all();
+//        foreach ($permissions as $p) {
+//            \Gate::define("{$p->name}/{$p->resource_name}", function($user) use($p) {
+////                dd($p->roles);
+////                dd($user->hasRole($p->roles));
+//               return $user->hasRole($p->roles);
+//            });
+//        }
+//
+////        \Gate::define('user-admin', function ($user) {
+////            return false;
+////        });
     }
 }

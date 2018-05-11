@@ -39,7 +39,7 @@ class AuthServiceProvider extends ServiceProvider
             /** @var PermissionRepository $permissionRepository */
             $permissionRepository = app(PermissionRepository::class);
             $permissionRepository->pushCriteria(new FindPermissionsResourceCriteria());
-//        dd($permissions = $permissionRepository->all());
+//          dd($permissions = $permissionRepository->all());
             $permissions = $permissionRepository->all();
             foreach ($permissions as $p) {
                 \Gate::define("{$p->name}/{$p->resource_name}", function ($user) use ($p) {

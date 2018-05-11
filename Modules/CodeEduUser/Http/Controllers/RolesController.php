@@ -16,7 +16,8 @@ use CodeEduUser\Annotations\Mapping as Permission;
 /**
  * Class RoleController
  * @package CodeEduUser\Http\Controllers
- * @Permission\ControllerAnnotation(name="roles-admin", description="Administração de papéis de usuários")
+ *
+ * @Permission\Controller(name="roles-admin", description="Administração de papéis de usuários")
  */
 class RolesController extends Controller
 {
@@ -41,8 +42,8 @@ class RolesController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     * @Permission\Action(name="list", description="Listar papéis de usuários")
+     * @Permission\Action(name="list", description="Listar papeis de usuários")
+     *
      * @return Response
      */
     public function index()
@@ -52,8 +53,8 @@ class RolesController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
      * @Permission\Action(name="store", description="Cadastrar papéis de usuários")
+     *
      * @return Response
      */
     public function create()
@@ -62,8 +63,8 @@ class RolesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
      * @Permission\Action(name="store", description="Cadastrar papéis de usuários")
+     *
      * @param RoleRequest $request
      * @return Response
      */
@@ -76,19 +77,8 @@ class RolesController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
      * @Permission\Action(name="edit", description="Editar papéis de usuários")
+     *
      * @param  int $id
      * @return Response
      */
@@ -101,8 +91,8 @@ class RolesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
      * @Permission\Action(name="update", description="Atualizar papéis de usuários")
+     *
      * @param RoleRequest $request
      * @param  int $id
      * @return Response
@@ -117,8 +107,8 @@ class RolesController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
      * @Permission\Action(name="destroy", description="Excluir papéis de usuários")
+     *
      * @param RoleRequest $request
      * @param  int $id
      * @return Response
@@ -145,7 +135,7 @@ class RolesController extends Controller
         return view('codeeduuser::roles.permissions', compact('role', 'permissions', 'permissionsGroup'));
     }
 
-    public function updatePermission(PermissionRequest $request, $id    ) {
+    public function updatePermission(PermissionRequest $request, $id) {
         $data = $request->only('permissions');
         $this->repository->update($data, $id);
         $url = $request->get('redirect_to', route('codeeduuser.roles.index'));

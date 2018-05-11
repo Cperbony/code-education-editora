@@ -3,14 +3,13 @@
 namespace CodeEduUser\Annotations\Mapping;
 
 /**
- * Class ControllerAnnotation
+ * Class Controller
  * @package CodeEduUser\Annotations\Mapping
  * @Annotation
- * @target("CLASS")
+ * @Target("CLASS")
  */
-class ControllerAnnotation
+class Controller
 {
     public $name;
     public $description;
-
 }

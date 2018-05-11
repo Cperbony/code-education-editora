@@ -3,7 +3,6 @@
 namespace CodeEduUser\Providers;
 
 use CodeEduUser\Annotations\PermissionReader;
-use CodeEduUser\Http\Controllers\UsersController;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Doctrine\Common\Annotations\CachedReader;
@@ -54,14 +53,15 @@ class CodeEduUserServiceProvider extends ServiceProvider
         $this->app->bind(Reader::class, function () {
             return new CachedReader(
                 new AnnotationReader(),
+                //caminho do sistema para cache
                 new FilesystemCache(storage_path('framework/cache/doctrine-annotations')),
                 $debug = env('APP_DEBUG')
             );
         });
 
-        $this->app->bind('permission-reader', function () {
-            return new PermissionReader(app(Reader::class));
-        });
+//        $this->app->bind('permission-reader', function () {
+//            return new PermissionReader(app(Reader::class));
+//        });
     }
 
     /**
@@ -71,6 +71,8 @@ class CodeEduUserServiceProvider extends ServiceProvider
     {
         //Registra as anotações e faz o require e o include.
         $loader = require __DIR__ . '/../../../vendor/autoload.php';
+        //Classe que registra as anotações, fazendo require ou include
+        //Pegar o load e a classe em questão. Anotação será sempre uma classe (OO)
         AnnotationRegistry::registerLoader([$loader, 'loadClass']);
     }
 

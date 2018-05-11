@@ -32,8 +32,10 @@ class BookUpdateRequest extends BookCreateRequest
         if ($id == 0) {
             return false;
         }
+
         $book = $this->repository->find($id);
         $user = \Auth::user();
+
         return $user->can('update', $book);
     }
 }
