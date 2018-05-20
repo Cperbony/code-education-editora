@@ -3,29 +3,12 @@
 namespace CodeEduUser\Http\Middleware;
 
 use Closure;
-//use CodeEduUser\Annotations\PermissionReader;
 use CodeEduUser\Facade\PermissionReader;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 
 class AuthorizationResource
 {
-
-    /**
-     * @var PermissionReader
-
-    private $reader;
-     */
-
-    /**
-     * AuthorizationResource constructor.
-     * @param PermissionReader $reader
-
-    public function __construct(PermissionReader $reader)
-    {
-        $this->reader = $reader;
-    }*/
-
     /**
      * Handle an incoming request.
      *

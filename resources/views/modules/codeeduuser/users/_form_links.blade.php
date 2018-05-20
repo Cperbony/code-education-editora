@@ -15,7 +15,9 @@ $table = Table::withContents($users->items())->striped()
                                 'onclick' => "event.preventDefault();
                                 document.getElementById(\"{$deleteForm}\").submit();"
                    ]);
-
+//               if($user->id == \Auth::user()->id){
+//                   $anchorDestroy->disable();
+//               }
                $anchorFlag = '<a title = "Não é possível excluir o próprio usuário">Excluir</a>';
                $anchorDestroy = $user->id == \Auth::user()->id ? $anchorFlag : $anchorDestroy;
 

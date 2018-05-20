@@ -26,7 +26,7 @@ class PermissionRequest extends FormRequest
     {
             return [
                 'permissions' => "required|array",
-                'permissions.*' => 'exists:permissions, id'
+//                'permissions.*' => 'exists:permissions, id'
             ];
     }
 }

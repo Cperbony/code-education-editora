@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+//        dd(config('codeeduuser.user_default.email'));
         return view('home');
     }
 }

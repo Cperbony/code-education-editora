@@ -35,11 +35,12 @@ class User extends Authenticatable implements TableInterface
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     public function formRolesAttribute() {
-        return $this->pluck('id')->all();
+        return $this->roles->pluck('id')->all();
     }
 
     /**

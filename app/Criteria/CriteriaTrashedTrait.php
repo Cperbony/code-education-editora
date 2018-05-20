@@ -8,9 +8,6 @@
 
 namespace CodePub\Criteria;
 
-
-use CodeEduUser\Criteria\FindPermissionsResourceCriteria;
-
 trait CriteriaTrashedTrait
 {
 
@@ -30,7 +27,7 @@ trait CriteriaTrashedTrait
      */
     public function withTrashed()
     {
-        $this->pushCriteria(FindPermissionsResourceCriteria::class);
+        $this->pushCriteria(FindWithTrashedCriteria::class);
         return $this;
     }
 }

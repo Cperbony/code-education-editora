@@ -14,7 +14,7 @@ use Illuminate\Http\Response;
 use CodeEduUser\Annotations\Mapping as Permission;
 
 /**
- * Class RoleController
+ * Class RolesController
  * @package CodeEduUser\Http\Controllers
  *
  * @Permission\Controller(name="roles-admin", description="Administração de papéis de usuários")
@@ -125,14 +125,15 @@ class RolesController extends Controller
     }
 
     public function editPermission($id) {
-        $role = $this->repository->find($id);
+        $roles = $this->repository->find($id);
+
         $this->permissionRepository->pushCriteria(new FindPermissionsResourceCriteria());
         $permissions = $this->permissionRepository->all();
 
         $this->permissionRepository->resetCriteria();
         $this->permissionRepository->pushCriteria(new FindPermissionsGroupCriteria());
         $permissionsGroup = $this->permissionRepository->all(['name', 'description']);
-        return view('codeeduuser::roles.permissions', compact('role', 'permissions', 'permissionsGroup'));
+        return view('codeeduuser::roles.permissions', compact('roles', 'permissions', 'permissionsGroup'));
     }
 
     public function updatePermission(PermissionRequest $request, $id) {

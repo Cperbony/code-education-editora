@@ -2,7 +2,6 @@
 
 namespace CodeEduBook\Http\Requests;
 
-use CodeEduBook\Http\Requests\BookCreateRequest;
 use CodeEduBook\Repositories\BookRepository;
 
 class BookUpdateRequest extends BookCreateRequest
