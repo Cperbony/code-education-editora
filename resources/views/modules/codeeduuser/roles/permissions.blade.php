@@ -3,10 +3,10 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h3>Permissões de {{$roles->name}}</h3>
+            <h3>Permissões de {{$role->name}}</h3>
         </div>
         <div class="row">
-            {!! Form::open(['route' => ['codeeduuser.roles.permissions.update', $roles->id],
+            {!! Form::open(['route' => ['codeeduuser.roles.permissions.update', $role->id],
             'class' => 'form', 'method' => 'PUT']) !!}
 <ul class="list-group">
     @foreach($permissionsGroup as $pg)
@@ -26,7 +26,7 @@
                                 <div class="checkbox">
                                     <label for="">
                                     <input type="checkbox" name="permissions[]" value="{{$permission->id}}"
-{{ $roles->permissions->contains('id', $permission->id) ? 'checked="checked"' : ''}}/>
+{{ $role->permissions->contains('id', $permission->id) ? 'checked="checked"' : ''}}/>
                                         {{$permission->resource_description}}
                                     </label>
                                 </div>

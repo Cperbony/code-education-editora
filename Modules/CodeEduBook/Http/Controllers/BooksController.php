@@ -2,20 +2,20 @@
 
 namespace CodeEduBook\Http\Controllers;
 
+use CodeEduBook\Criteria\FindByAuthor;
 use CodeEduBook\Models\Book;
 use CodeEduUser\Annotations\Mapping as Permission;
 use CodeEduBook\Http\Requests\BookCreateRequest;
 use CodeEduBook\Http\Requests\BookUpdateRequest;
 use CodeEduBook\Repositories\BookRepository;
 use CodeEduBook\Repositories\CategoryRepository;
-use CodePub\Criteria\FindByAuthorCriteria;
 use Illuminate\Http\Request;
 
 /**
  * Class BooksController
  * @package CodeEduBook\Http\Controllers
  *
- * @Permission\Controller(name="books-admin", description="Administração de Livros")
+ * @Permission\Controller(name="book-admin", description="Administração de Livros")
  */
 class BooksController extends Controller
 {
@@ -36,7 +36,7 @@ class BooksController extends Controller
     function __construct(BookRepository $repository, CategoryRepository $categoryRepository)
     {
         $this->repository = $repository;
-        $this->repository->pushCriteria(new FindByAuthorCriteria());
+        $this->repository->pushCriteria(new FindByAuthor());
         $this->categoryRepository = $categoryRepository;
     }
 
@@ -103,15 +103,16 @@ class BooksController extends Controller
      * @Permission\Action(name="update", description="Atualizar Livros")
      *
      * @param BookUpdateRequest $request
-     * @param $id
+     * @param Book $book
      * @return \Illuminate\Http\Response
      * @internal param Book $book
      * @internal param int $id
      */
-    public function update(BookUpdateRequest $request, $id)
+    public function update(BookUpdateRequest $request, Book $book)
     {
         $data = $request->except(['author_id']);
-        $this->repository->update($data, $id);
+        $data['published'] = $request->get('published', false);
+        $this->repository->update($data, $book->id);
         $url = $request->get('redirect_to', route('books.index'));
         $request->session()->flash('message', 'Livro Atualizado com Sucesso!');
 
@@ -120,14 +121,13 @@ class BooksController extends Controller
 
     /**
      * @Permission\Action(name="delete", description="Remover Livros")
-     * @param $id
-     * @return \Illuminate\Http\Response
-     * @internal param int $id
+     * @param Book $book
+     * @return \Illuminate\Http\Response* @internal param int $id
      */
-    public function destroy($id)
+    public function destroy(Book $book)
     {
-        $this->repository->delete($id);
-        \Session::flash('message', 'Livro deletado com sucesso.');
+        $this->repository->delete($book->id);
+        \Session::flash('message', 'Livro excluído com sucesso.');
 
         return redirect()->to(\URL::previous());
     }

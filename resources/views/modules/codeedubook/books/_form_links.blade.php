@@ -3,6 +3,7 @@ $table = Table::withContents($books->items())->striped()
     ->callback('Ações', function ($field, $book) {
         $linkEdit = route('books.edit', ['book' => $book->id]);
         $linkDestroy = route('books.destroy', ['book' => $book->id]);
+        $linkChapters = route('chapters.index', ['book' => $book->id]);
         $deleteForm = "delete-form-{$book->id}";
 
         $form = Form::open(['route' =>
@@ -16,9 +17,12 @@ $table = Table::withContents($books->items())->striped()
                                 document.getElementById(\"{$deleteForm}\").submit();"
             ]);
 
+        $buttonChapter = Button::link('Capítulos')->asLinkTo($linkChapters);
         $buttonEdit = Button::link('Editar')->asLinkTo($linkEdit);
 
         return "<ul class=\"list-inline\">" .
+            "<li>" . $buttonChapter . "</li>" .
+            "<li>|</li>" .
             "<li>" . $buttonEdit . "</li>" .
             "<li>|</li>" .
             "<li>" . $anchorDestroy . "</li>" .

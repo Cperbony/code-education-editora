@@ -1,16 +1,24 @@
 <?php
 
-namespace CodePub\Criteria;
+namespace CodeEduBook\Criteria;
 
 use Prettus\Repository\Contracts\CriteriaInterface;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
  * Class FindByAuthorCriteria
- * @package namespace CodePub\Criteria;
+ * @package namespace CodeEduBook\Criteria;
  */
-class FindByAuthorCriteria implements CriteriaInterface
+class FindByBook implements CriteriaInterface
 {
+
+    private $bookId;
+
+    public function __construct($bookId)
+    {
+        $this->bookId = $bookId;
+    }
+
     /**
      * Apply criteria in query repository
      *
@@ -21,6 +29,6 @@ class FindByAuthorCriteria implements CriteriaInterface
      */
     public function apply($model, RepositoryInterface $repository)
     {
-        return $model->where('author_id', \Auth::user()->id);
+            return $model->where('book_id', $this->bookId);
     }
 }

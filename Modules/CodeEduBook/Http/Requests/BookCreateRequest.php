@@ -28,7 +28,11 @@ class BookCreateRequest extends FormRequest
             'subtitle' => 'required|max:255',
             'price' => 'required|numeric',
             'categories' => 'required|array',
-            'categories.*' => 'exists:categories,id'
+            'categories.*' => 'exists:categories,id',
+            'dedication' => 'required',
+            'description' => 'required',
+            'website' => 'required|max:255|url',
+            'percent_complete' => 'required|integer|min:0',
         ];
     }
 

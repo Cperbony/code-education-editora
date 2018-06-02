@@ -24,18 +24,18 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->registerPolicies();
+
+        \Gate::before(function ($user, $ability) {
+            //True - Autorizado
+            //False - Não autorizado
+            //void - executar a habilidade em questão
+            if ($user->isAdmin()) {
+                return true;
+            }
+        });
+
         if (!(app()->runningInConsole() || app()->runningUnitTests())) {
-            $this->registerPolicies();
-
-            \Gate::before(function ($user, $ability) {
-                //True - Autorizado
-                //False - Não autorizado
-                //void - executar a habilidade em questão
-                if ($user->isAdmin()) {
-                    return true;
-                }
-            });
-
             /** @var PermissionRepository $permissionRepository */
             $permissionRepository = app(PermissionRepository::class);
             $permissionRepository->pushCriteria(new FindPermissionsResourceCriteria());

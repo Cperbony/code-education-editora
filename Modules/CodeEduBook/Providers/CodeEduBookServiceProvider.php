@@ -24,6 +24,7 @@ class CodeEduBookServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->publishMigrationsAndSeeders();
+        $this->publishAssets();
     }
 
     /**
@@ -89,11 +90,12 @@ class CodeEduBookServiceProvider extends ServiceProvider
         }
     }
 
-    public function publishMigrationsAndSeeders() {
+    public function publishMigrationsAndSeeders()
+    {
         $sourcePath = __DIR__ . '/../database/migrations';
 
         $this->publishes([
-           $sourcePath => database_path('migrations')
+            $sourcePath => database_path('migrations')
         ], 'migrations');
 
         $sourcePath = __DIR__ . '/../database/seeders';
@@ -101,6 +103,15 @@ class CodeEduBookServiceProvider extends ServiceProvider
         $this->publishes([
             $sourcePath => database_path('seeds')
         ], 'seeders');
+    }
+
+    public function publishAssets()
+    {
+        $sourcePath = __DIR__ . '/../resources/assets/js';
+
+        $this->publishes([
+            $sourcePath => public_path('js')
+        ], 'assets');
     }
 
     /**

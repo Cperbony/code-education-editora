@@ -17,7 +17,7 @@ use CodeEduUser\Annotations\Mapping as Permission;
  * Class RolesController
  * @package CodeEduUser\Http\Controllers
  *
- * @Permission\Controller(name="roles-admin", description="Administração de papéis de usuários")
+ * @Permission\Controller(name="role-admin", description="Administração de papéis de usuários")
  */
 class RolesController extends Controller
 {
@@ -125,7 +125,7 @@ class RolesController extends Controller
     }
 
     public function editPermission($id) {
-        $roles = $this->repository->find($id);
+        $role = $this->repository->find($id);
 
         $this->permissionRepository->pushCriteria(new FindPermissionsResourceCriteria());
         $permissions = $this->permissionRepository->all();
@@ -133,14 +133,14 @@ class RolesController extends Controller
         $this->permissionRepository->resetCriteria();
         $this->permissionRepository->pushCriteria(new FindPermissionsGroupCriteria());
         $permissionsGroup = $this->permissionRepository->all(['name', 'description']);
-        return view('codeeduuser::roles.permissions', compact('roles', 'permissions', 'permissionsGroup'));
+        return view('codeeduuser::roles.permissions', compact('role', 'permissions', 'permissionsGroup'));
     }
 
     public function updatePermission(PermissionRequest $request, $id) {
-        $data = $request->only('permissions');
-        $this->repository->update($data, $id);
+        $data = $request->get('permissions', []);
+        $this->repository->updatePermissions($data, $id);
         $url = $request->get('redirect_to', route('codeeduuser.roles.index'));
-        $request->session()->flash('message', 'Permissões atribuídas com Sucesso!');
+        $request->session()->flash('message', 'Permissões Atribuídas com Sucesso!');
         return redirect()->to($url);
     }
 }

@@ -25,16 +25,16 @@ class BookUpdateRequest extends BookCreateRequest
      *
      * @return bool
      */
-    public function authorize()
-    {
-        $id = (int)$this->route('book');
-        if ($id == 0) {
-            return false;
-        }
-
-        $book = $this->repository->find($id);
-        $user = \Auth::user();
-
-        return $user->can('update', $book);
-    }
+//    public function authorize()
+//    {
+//        $id = (int)$this->route('book');
+//        if ($id == 0) {
+//            return false;
+//        }
+//
+//        $book = $this->repository->find($id);
+//        $user = \Auth::user();
+//
+//        return $user->can('update', $book);
+//    }
 }

@@ -3,10 +3,8 @@
 namespace CodeEduBook\Models;
 
 use Bootstrapper\Interfaces\TableInterface;
-use CodeEduBook\Models\Category;
 use CodeEduUser\Models\User;
 use Collective\Html\Eloquent\FormAccessible;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Prettus\Repository\Traits\TransformableTrait;
@@ -26,7 +24,12 @@ class Book extends Model implements TableInterface
         'title',
         'subtitle',
         'price',
-        'author_id'
+        'author_id',
+        'dedication',
+        'description',
+        'website',
+        'percent_complete',
+        'published'
     ];
 
     /**
@@ -34,7 +37,7 @@ class Book extends Model implements TableInterface
      */
     public function author()
     {
-        return $this->belongsTo(\CodeEduUser\Models\User::class);
+        return $this->belongsTo(User::class);
     }
 
     /**

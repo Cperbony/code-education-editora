@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
  * Class CategoriesController
  * @package CodeEduBook\Http\Controllers
  *
- * @Permission\Controller(name="categories-admin", description="Administração de Categorias")
+ * @Permission\Controller(name="category-admin", description="Administração de Categorias")
  */
 class CategoriesController extends Controller
 {

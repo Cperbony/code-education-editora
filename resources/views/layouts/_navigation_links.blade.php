@@ -4,18 +4,21 @@ if (Auth::check()) {
     $arrayLinks = [
         [
             'link' => route('categories.index'),
-            'title' => 'Categorias'
+            'title' => 'Categorias',
+            'permission' => 'category-admin/list'
         ],
         [
             'Books',
             [
                 [
                     'link' => route('books.index'),
-                    'title' => 'Listar'
+                    'title' => 'Listar',
+                    'permission' => 'book-admin/list'
                 ],
                 [
                     'link' => route('trashed.books.index'),
-                    'title' => 'Lixeira'
+                    'title' => 'Lixeira',
+                    'permission' => 'book-trashed-admin/list'
                 ]
             ]
         ],
@@ -33,7 +36,7 @@ if (Auth::check()) {
 //            ]
 //        ]
     ];
-    if (Auth::user()->can('users-admin/list')) {
+    if (Auth::user()->can('user-admin/list')) {
         $arrayLinks [] = [
             'Usuários',
             [
@@ -48,7 +51,7 @@ if (Auth::check()) {
             ]
         ];
     }
-    $links = Navigation::links($arrayLinks);
+    $links = Navigation::links(\NavbarAuthorization::getLinksAuthorized($arrayLinks));
     $logout = Navigation::links([
         [
             Auth::user()->name,

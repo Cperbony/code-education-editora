@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
  * Class UsersController
  * @package CodeEduUser\Http\Controllers
  *
- * @Permission\Controller(name="users-admin", description="Administração de Usuários")
+ * @Permission\Controller(name="user-admin", description="Administração de Usuários")
  */
 class UsersController extends Controller
 {

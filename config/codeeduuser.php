@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'name' => 'CodeEduUser',
+//    'name' => 'CodeEduUser',
     'email' => [
         'user_created' => [
             'subject' => config('app.name') . ' - Sua Conta foi Criada com Sucesso'
@@ -18,7 +18,8 @@ return [
     'acl' => [
         'role_admin' => env('ROLE_ADMIN', 'Admin'),
         'controllers_annotations' => [
-            __DIR__.'/../Modules/CodeEduUser/Http/Controllers'
+//            __DIR__ . '/../Http/Controllers',
+//            __DIR__ . '../../CodeEduBook/Http/Controllers'
         ]
     ]
 ];

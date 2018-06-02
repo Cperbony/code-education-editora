@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
  * Class BooksTrashedController
  * @package CodeEduBook\Http\Controllers
  *
- * @Permission\Controller(name="books-thrashed-admin", description="Administração de Livros na Lixeira")
+ * @Permission\Controller(name="book-thrashed-admin", description="Administração de Livros na Lixeira")
  */
 
 class BooksTrashedController extends Controller
@@ -47,7 +47,7 @@ class BooksTrashedController extends Controller
     }
 
     /**
-     * @Permission\Action(name="list", description="Listar Livros na Lixeira")
+     * @Permission\Action(name="list", description="Listar Livros excluídos")
      *
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -61,7 +61,7 @@ class BooksTrashedController extends Controller
     }
 
     /**
-     * @Permission\Action(name="update", description="Atualizar Livros na Lixeira")
+     * @Permission\Action(name="restore", description="Restaurar Livros da Lixeira")
      *
      * @param Request $request
      * @param $id

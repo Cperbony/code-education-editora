@@ -24,3 +24,38 @@
 {!! Form::error('categories', $errors) !!}
 {!! Form::error('categories.*', $errors) !!}
 {!! Html::closeFormGroup() !!}
+
+{!! Html::openFormGroup('dedication', $errors) !!}
+{!! Form::label('dedication', 'Dedicatória', ['class' => 'control-label']) !!}
+{!! Form::textarea('dedication', null, ['class' => 'form-control']) !!}
+{!! Form::error('dedication', $errors) !!}
+{!! Html::closeFormGroup() !!}
+
+{!! Html::openFormGroup('description', $errors) !!}
+{!! Form::label('description', 'Descrição', ['class' => 'control-label']) !!}
+{!! Form::textarea('description', null, ['class' => 'form-control']) !!}
+{!! Form::error('description', $errors) !!}
+{!! Html::closeFormGroup() !!}
+
+{!! Html::openFormGroup('website', $errors) !!}
+{!! Form::label('website', 'Website', ['class' => 'control-label']) !!}
+{!! Form::text('website', null, ['class' => 'form-control']) !!}
+{!! Form::error('website', $errors) !!}
+{!! Html::closeFormGroup() !!}
+
+{!! Html::openFormGroup('percent_complete', $errors) !!}
+{!! Form::label('percent_complete', 'Dedicatória', ['class' => 'control-label']) !!}
+{!! Form::number('percent_complete', null, ['class' => 'form-control']) !!}
+{!! Form::error('percent_complete', $errors) !!}
+{!! Html::closeFormGroup() !!}
+
+{!! Html::openFormGroup() !!}
+<label for="">
+    {!! Form::checkbox('published') !!} Publicado?
+</label>
+{!! Html::closeFormGroup() !!}
+
+
+
+
+
