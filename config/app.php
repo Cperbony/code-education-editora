@@ -273,6 +273,7 @@ return [
         'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
         'PermissionReader' => \CodeEduUser\Facade\PermissionReader::class,
         'NavbarAuthorization' => \CodeEduUser\Facade\NavbarAuthorization::class,
+        'Image' => \Folklore\Image\Facades\Image::class,
 
     ],
 
