@@ -115,16 +115,17 @@ class RolesController extends Controller
      */
     public function destroy(RoleRequest $request, $id)
     {
-        try{
+        try {
             $this->repository->delete($id);
             \Session::flash('message', 'Papel de usuário Removido Com Sucesso!');
-        }catch (QueryException $ex) {
+        } catch (QueryException $ex) {
             \Session::flash('error', 'Papel de usuário não pode ser Removido. O mesmo esta relacionado com outros registros!');
         }
         return redirect()->to(\URL::previous());
     }
 
-    public function editPermission($id) {
+    public function editPermission($id)
+    {
         $role = $this->repository->find($id);
 
         $this->permissionRepository->pushCriteria(new FindPermissionsResourceCriteria());
@@ -136,7 +137,8 @@ class RolesController extends Controller
         return view('codeeduuser::roles.permissions', compact('role', 'permissions', 'permissionsGroup'));
     }
 
-    public function updatePermission(PermissionRequest $request, $id) {
+    public function updatePermission(PermissionRequest $request, $id)
+    {
         $data = $request->get('permissions', []);
         $this->repository->updatePermissions($data, $id);
         $url = $request->get('redirect_to', route('codeeduuser.roles.index'));

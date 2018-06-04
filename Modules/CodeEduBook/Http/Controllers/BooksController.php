@@ -3,7 +3,9 @@
 namespace CodeEduBook\Http\Controllers;
 
 use CodeEduBook\Criteria\FindByAuthor;
+use CodeEduBook\Http\Requests\BookCoverRequest;
 use CodeEduBook\Models\Book;
+use CodeEduBook\Pub\BookCoverUpload;
 use CodeEduUser\Annotations\Mapping as Permission;
 use CodeEduBook\Http\Requests\BookCreateRequest;
 use CodeEduBook\Http\Requests\BookUpdateRequest;
@@ -130,5 +132,33 @@ class BooksController extends Controller
         \Session::flash('message', 'Livro excluído com sucesso.');
 
         return redirect()->to(\URL::previous());
+    }
+
+
+    /**
+     * @Permission\Action(name="cover", description="Cover de Livros")
+     * @param Book $book
+     * @return \Illuminate\Http\Response* @internal param int $id
+     */
+    public function coverForm(Book $book)
+    {
+        return view('codeedubook::books.cover', compact('book'));
+    }
+
+    /**
+     * @Permission\Action(name="cover", description="Cover de Livros")
+     * @param BookCoverRequest $request
+     * @param Book $book
+     * @param BookCoverUpload $upload
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function coverStore(BookCoverRequest $request, Book $book, BookCoverUpload $upload)
+    {
+        $upload->upload($book, $request->file('file'));
+
+        $url = $request->get('redirect_to', route('books.index'));
+        $request->session()->flash('message', 'Cover Atualizado com Sucesso!');
+        return redirect()->to($url);
     }
 }

@@ -19,7 +19,7 @@ return [
         'role_admin' => env('ROLE_ADMIN', 'Admin'),
         'controllers_annotations' => [
 //            __DIR__ . '/../Http/Controllers',
-//            __DIR__ . '../../CodeEduBook/Http/Controllers'
+            __DIR__ . './../Modules/CodeEduBook/Http/Controllers'
         ]
     ]
 ];

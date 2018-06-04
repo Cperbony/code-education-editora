@@ -42,11 +42,13 @@ if (Auth::check()) {
             [
                 [
                     'link' => route('codeeduuser.users.index'),
-                    'title' => 'Usuários'
+                    'title' => 'Usuários',
+                    'permission' => 'user-admin/list'
                 ],
                 [
                     'link' => route('codeeduuser.roles.index'),
-                    'title' => 'Papel de Usuário'
+                    'title' => 'Papel de Usuário',
+                    'permission' => 'role-admin/list'
                 ],
             ]
         ];

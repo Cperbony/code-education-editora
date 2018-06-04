@@ -17,6 +17,7 @@ class Book extends Model implements TableInterface
     use TransformableTrait;
     use FormAccessible;
     use SoftDeletes;
+    use BookStorageTrait;
 
     protected $dates = ['deleted_at'];
 

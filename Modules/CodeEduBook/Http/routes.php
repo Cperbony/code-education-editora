@@ -9,7 +9,13 @@ Route::group(['middleware' => [
     config('codeeduuser.middleware.isVerified'), 'auth.resource']], function () {
         Route::resource('categories', 'CategoriesController', ['except' => 'show']);
 
-        Route::group(['prefix' => 'books/{books}'], function () {
+        Route::group(['prefix' => 'books/{book}'], function () {
+            Route::get('cover', 'BooksController@coverForm')
+                ->name('books.cover.create');
+
+            Route::post('cover', 'BooksController@coverStore')
+                ->name('books.cover.store');
+
             Route::resource('chapters', 'ChaptersController', ['except' => 'show']);
         });
 
