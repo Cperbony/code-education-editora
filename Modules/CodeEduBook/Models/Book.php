@@ -86,7 +86,12 @@ class Book extends Model implements TableInterface
             case 'Autor':
                 return $this->author->name;
             case 'Título':
-                return $this->title;
+                if (file_exists($this->zip_file)) {
+                    $route = route('books.download', ['id' => $this->id]);
+                    return "<a href=\"{$route}\" target=\"_blank\">{$this->title}</a>";
+                } else {
+                    return $this->title;
+                }
             case 'Subtítulo':
                 return $this->subtitle;
             case 'Preço':

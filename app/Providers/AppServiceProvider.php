@@ -72,7 +72,7 @@ class AppServiceProvider extends ServiceProvider
         $loader->alias('Helpers', \Bootstrapper\Facades\Helpers::class);
         $loader->alias('Icon', \Bootstrapper\Facades\Icon::class);
         $loader->alias('InputGroup', \Bootstrapper\Facades\InputGroup::class);
-        $loader->alias('Image', \Bootstrapper\Facades\Image::class);
+//        $loader->alias('Image', \Bootstrapper\Facades\Image::class);
         $loader->alias('Label', \Bootstrapper\Facades\Label::class);
         $loader->alias('MediaObject', \Bootstrapper\Facades\MediaObject::class);
         $loader->alias('Modal', \Bootstrapper\Facades\Modal::class);

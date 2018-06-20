@@ -4,6 +4,7 @@ namespace CodeEduBook\Pub;
 
 use CodeEduBook\Models\Book;
 use Illuminate\Http\UploadedFile;
+use Imagine\Image\Box;
 
 class BookCoverUpload
 {

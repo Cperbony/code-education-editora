@@ -3,6 +3,7 @@
 namespace CodePub\Console;
 
 use CodeEduUser\Console\CreatePermissionCommand;
+use CodePub\Console\Command\SupervisorCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -15,6 +16,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         CreatePermissionCommand::class,
+        SupervisorCommand::class
     ];
 
     /**

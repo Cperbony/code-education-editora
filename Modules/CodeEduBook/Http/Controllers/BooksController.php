@@ -4,8 +4,10 @@ namespace CodeEduBook\Http\Controllers;
 
 use CodeEduBook\Criteria\FindByAuthor;
 use CodeEduBook\Http\Requests\BookCoverRequest;
+use CodeEduBook\Jobs\GenerateBook;
 use CodeEduBook\Models\Book;
 use CodeEduBook\Pub\BookCoverUpload;
+//use CodeEduBook\Pub\BookExport;
 use CodeEduUser\Annotations\Mapping as Permission;
 use CodeEduBook\Http\Requests\BookCreateRequest;
 use CodeEduBook\Http\Requests\BookUpdateRequest;
@@ -158,7 +160,26 @@ class BooksController extends Controller
         $upload->upload($book, $request->file('file'));
 
         $url = $request->get('redirect_to', route('books.index'));
-        $request->session()->flash('message', 'Cover Atualizado com Sucesso!');
+        $request->session()->flash('message', 'Cover Adicionado com Sucesso!');
         return redirect()->to($url);
+    }
+
+    /**
+     * @param Book $book
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function export(Book $book)
+    {
+//        $bookExport = app(BookExport::class);
+//        $bookExport->export($book);
+//        $bookExport->compress($book);
+
+        dispatch(new GenerateBook($book));
+        return redirect()->route('books.index');
+    }
+
+    public function download(Book $book)
+    {
+        return response()->download($book->zip_file);
     }
 }

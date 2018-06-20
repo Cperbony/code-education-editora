@@ -61,6 +61,15 @@ Nesta fase você deverá fazer as seguintes tarefas
 * Criar uma migração no módulo de CodeEduBook para adicionar uma role "Autor" no banco de dados.
 Desafio (opcional): Criar um serviço com facade para montar o menu de usuário de acordo com as permissões dele.
 
+### Fase 9 - Publicando livro
+Nesta fase você deverá fazer as seguintes tarefas:
+
+Implementar o cover para todos formatos que serão exportados: (kindle, ebook e pdf).
+Publicar o livro usando Queues e Jobs.
+Permitir o download do livro no painel administrativo.
+Incluir uma permissão de exportação de livro para a role Author.
+Incluir um livro exportado de exemplo em pdf na raiz da aplicação.
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">

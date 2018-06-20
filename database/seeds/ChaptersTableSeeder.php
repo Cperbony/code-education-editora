@@ -15,12 +15,13 @@ class ChaptersTableSeeder extends Seeder
     {
         $books = Book::all();
         foreach ($books as $book) {
-            factory(Chapter::class, 5)
-                ->make()
-                ->each(function ($chapter) use ($book) {
-                    $chapter->book_id = $book->id;
-                    $chapter->save();
-                });
+            $chapters = factory(Chapter::class, 5)
+                ->make();
+            foreach ($chapters as $key => $chapter) {
+                $chapter->book_id = $book->id;
+                $chapter->order = $key + 1;
+                $chapter->save();
+            }
         }
     }
 }
