@@ -89,7 +89,5 @@ class BookExport
         foreach ($chapters as $chapter) {
             file_put_contents("{$book->contents_storage}/{$chapter->order}.md", $chapter->content);
         }
-
-
     }
 }
