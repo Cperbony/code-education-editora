@@ -113,4 +113,9 @@ class User extends Authenticatable implements TableInterface
     public function isAdmin(){
         return $this->hasRole(config('codeeduuser.acl.role_admin'));
     }
+
+    public function routeNotificationForNexmo()
+    {
+        return "5516997178695";
+    }
 }

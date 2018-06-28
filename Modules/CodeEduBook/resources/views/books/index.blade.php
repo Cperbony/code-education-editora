@@ -41,3 +41,20 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        function exportBook(route) {
+            window.$.ajax({
+                url: route,
+                method, 'POST',
+                data: {
+                    _token: window.Laravel.csrfToken
+                },
+                success: function (data) {
+                    window.$.notify({message: 'O processo de exportação foi iniciado!'}, {type: 'success'});
+                }
+            })
+        }
+    </script>
+@endpush

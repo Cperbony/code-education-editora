@@ -6,6 +6,7 @@ use CodeEduBook\Criteria\FindByAuthor;
 use CodeEduBook\Http\Requests\BookCoverRequest;
 use CodeEduBook\Jobs\GenerateBook;
 use CodeEduBook\Models\Book;
+use CodeEduBook\Notifications\BookExported;
 use CodeEduBook\Pub\BookCoverUpload;
 //use CodeEduBook\Pub\BookExport;
 use CodeEduUser\Annotations\Mapping as Permission;
@@ -173,8 +174,11 @@ class BooksController extends Controller
 //        $bookExport = app(BookExport::class);
 //        $bookExport->export($book);
 //        $bookExport->compress($book);
+//        dispatch(new GenerateBook($book));
+        $user = \Auth::user();
+        $user->notify(new BookExported($user, $book));
 
-        dispatch(new GenerateBook($book));
+        \Session::flash('message', "O Livro {$this->book->title} foi exportado com Sucesso!");
         return redirect()->route('books.index');
     }
 

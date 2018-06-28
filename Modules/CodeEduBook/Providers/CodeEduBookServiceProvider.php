@@ -110,9 +110,11 @@ class CodeEduBookServiceProvider extends ServiceProvider
     public function publishAssets()
     {
         $sourcePath = __DIR__ . '/../resources/assets/js';
+        $libPath = __DIR__ . '/../resources/assets/lib';
 
         $this->publishes([
-            $sourcePath => public_path('js')
+            $sourcePath => public_path('js'),
+            $libPath => base_path('resources/assets/js/vendor')
         ], 'assets');
     }
 

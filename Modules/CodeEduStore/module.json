@@ -1,0 +1,15 @@
+{
+    "name": "CodeEduStore",
+    "alias": "codeedustore",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "\\CodeEduStore\\Providers\\CodeEduStoreServiceProvider"
+    ],
+    "aliases":{},
+    "files": [
+        "start.php"
+    ]
+}

@@ -70,6 +70,9 @@ Permitir o download do livro no painel administrativo.
 Incluir uma permissão de exportação de livro para a role Author.
 Incluir um livro exportado de exemplo em pdf na raiz da aplicação.
 
+### Fase 10 - Trabalhando com Notificações
+Implementação de notificações via email, sms, broadcasting
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
