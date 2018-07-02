@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Code Editora') }}</title>
 
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/store.css" rel="stylesheet">
 
     <!-- Scripts -->
     <script>

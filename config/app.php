@@ -177,6 +177,7 @@ return [
          */
         \CodeEduBook\Providers\CodeEduBookServiceProvider::class,
         \CodeEduUser\Providers\CodeEduUserServiceProvider::class,
+        \CodeEduStore\Providers\CodeEduStoreServiceProvider::class,
 
         /*
          * Application Service Providers...

@@ -9,6 +9,7 @@
     "require": {
         "php": ">=5.6.4",
         "caouecs/laravel-lang": "~3.0",
+        "cviebrock/eloquent-sluggable": "4.0.*",
         "doctrine/annotations": "1.4.0",
         "doctrine/dbal": "^2.6",
         "folklore/image": "0.3.16",
@@ -43,7 +44,8 @@
         "psr-4": {
             "CodePub\\": "app/",
             "CodeEduBook\\": "Modules/CodeEduBook",
-            "CodeEduUser\\": "Modules/CodeEduUser"
+            "CodeEduUser\\": "Modules/CodeEduUser",
+            "CodeEduStore\\": "Modules/CodeEduStore"
         }
     },
     "autoload-dev": {

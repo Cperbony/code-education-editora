@@ -23,6 +23,8 @@ class CodeEduStoreServiceProvider extends ServiceProvider
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
+        $this->publishMigrationsAndSeeders();
+        $this->publishAssets();
     }
 
     /**
@@ -32,7 +34,8 @@ class CodeEduStoreServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->register(RouteServiceProvider::class);
+        $this->app->register(RepositoryServiceProvider::class);
     }
 
     /**
@@ -43,10 +46,10 @@ class CodeEduStoreServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            __DIR__.'/../Config/config.php' => config_path('codeedustore.php'),
+            __DIR__ . '/../Config/config.php' => config_path('codeedustore.php'),
         ], 'config');
         $this->mergeConfigFrom(
-            __DIR__.'/../Config/config.php', 'codeedustore'
+            __DIR__ . '/../Config/config.php', 'codeedustore'
         );
     }
 
@@ -59,7 +62,7 @@ class CodeEduStoreServiceProvider extends ServiceProvider
     {
         $viewPath = base_path('resources/views/modules/codeedustore');
 
-        $sourcePath = __DIR__.'/../resources/views';
+        $sourcePath = __DIR__ . '/../resources/views';
 
         $this->publishes([
             $sourcePath => $viewPath
@@ -82,8 +85,35 @@ class CodeEduStoreServiceProvider extends ServiceProvider
         if (is_dir($langPath)) {
             $this->loadTranslationsFrom($langPath, 'codeedustore');
         } else {
-            $this->loadTranslationsFrom(__DIR__ .'/../resources/lang', 'codeedustore');
+            $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'codeedustore');
         }
+    }
+
+    public function publishMigrationsAndSeeders()
+    {
+        $sourcePath = __DIR__ . '/../database/migrations';
+
+        $this->publishes([
+            $sourcePath => database_path('migrations')
+        ], 'migrations');
+
+        $sourcePath = __DIR__ . '/../database/seeders';
+
+        $this->publishes([
+            $sourcePath => database_path('seeds')
+        ], 'seeders');
+    }
+
+    public function publishAssets()
+    {
+        $sourcePathImg = __DIR__ . '/../resources/img';
+        $sourcePathSass = __DIR__ . '/../resources/sass';
+
+
+        $this->publishes([
+            $sourcePathImg => public_path('img'),
+            $sourcePathSass => base_path('resources/assets/sass'),
+        ], 'assets');
     }
 
     /**
