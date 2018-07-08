@@ -9,7 +9,7 @@
     "require": {
         "php": ">=5.6.4",
         "caouecs/laravel-lang": "~3.0",
-        "cviebrock/eloquent-sluggable": "4.0.*",
+        "cviebrock/eloquent-sluggable": "4.1.*",
         "doctrine/annotations": "1.4.0",
         "doctrine/dbal": "^2.6",
         "folklore/image": "0.3.16",

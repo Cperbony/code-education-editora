@@ -1,6 +1,6 @@
 # Desenvolvendo uma Editora Online com Laravel 5.3
 ## by Code Education
-#### Curso Ministrado pelo <a href="https://about.me/carlosluiz">Prof. Luiz Carlos Diniz</a><h/3>
+#### Curso Ministrado pelo <a href="https://about.me/carlosluiz">Prof. Luiz Carlos Diniz</a>
 <hr/>
 
 ### Fase 1 - Abrindo a Editora

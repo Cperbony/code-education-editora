@@ -53,7 +53,8 @@ $factory->define(\CodeEduBook\Models\Book::class, function (Faker\Generator $fak
         'dedication' => $faker->sentence,
         'description' => $faker->paragraph,
         'website' => $faker->url,
-        'percent_complete' => rand(1, 100)
+        'percent_complete' => rand(1, 100),
+        'published' => 1
     ];
 });
 

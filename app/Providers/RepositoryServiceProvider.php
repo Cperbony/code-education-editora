@@ -2,8 +2,10 @@
 
 namespace CodePub\Providers;
 
-use CodeEduUser\Repositories\UserRepository;
-use CodeEduUser\Repositories\UserRepositoryEloquent;
+use CodeEduStore\Repositories\CategoryRepository;
+use CodeEduStore\Repositories\ProductRepository;
+use CodePub\Repositories\CategoryStoreRepositoryEloquent;
+use CodePub\Repositories\ProductStoreRepositoryEloquent;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -26,7 +28,9 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register()
     {
 
-        $this->app->bind(UserRepository::class, UserRepositoryEloquent::class);
+//        $this->app->bind(UserRepository::class, UserRepositoryEloquent::class);
+        $this->app->bind(CategoryRepository::class, CategoryStoreRepositoryEloquent::class);
+        $this->app->bind(ProductRepository::class, ProductStoreRepositoryEloquent::class);
 
         //:end-bindings:
     }

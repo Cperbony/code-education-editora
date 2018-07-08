@@ -1,5 +1,8 @@
 <?php
-$navbar = Navbar::withBrand(config('app.name'), url('/'))->inverse();
+$appName = config('app.name');
+$navbar = Navbar::withBrand(
+    "<img src=\"/img/logo.png\" title=\"$appName\" alt=\"$appName\">",
+    url('/'));
 if (Auth::check()) {
     $arrayLinks = [
         [
@@ -71,6 +74,31 @@ if (Auth::check()) {
     ])->right();
     $navbar->withContent($links)
         ->withContent($logout);
+} else {
+    $formSearch = Form::open(['url' => route('store.search'), 'class' => 'form-inline form-search navbar-right', 'method' => 'GET']) .
+        Html::openFormGroup() .
+        InputGroup::withContents(Form::text('search', null, ['class' => 'form-control']))->append(Form::submit('', ['class' => 'btn-search'])) .
+        Html::closeFormGroup();
+    Form::close();
+
+    $menuRight = Navigation::pills([
+        [
+            'link' => url('/logout'),
+            'title' => 'Registrar',
+            'linkAttributes' => [
+                'class' => "btnnew btnnew-default"
+            ]
+        ],
+        [
+            'link' => url('/logout'),
+            'title' => 'Login',
+            'linkAttributes' => [
+                'class' => "btnnew btnnew-default"
+            ]
+        ]
+    ])->right()->render();
+    $navbar->withContent($menuRight)
+        ->withContent("<div>$formSearch</div>");
 }
 
 $form = Form::open([
@@ -92,3 +120,4 @@ $form = Form::open([
         {!! Alert::danger(Session::get('error'))->close() !!}
     </div>
 @endif
+

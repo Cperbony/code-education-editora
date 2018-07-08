@@ -26,9 +26,18 @@
 
     @include('layouts._navigation_links')
 
-    @yield('content')
+    @yield('banner')
+    @yield('menu')
 
+    <section>
+        @yield('content')
+    </section>
 </div>
+
+<footer class="text-center">
+    <p>@ CodePub {{date('Y')}}</p>
+</footer>
+
 
 <!-- Scripts -->
 <script src="/js/app.js"></script>

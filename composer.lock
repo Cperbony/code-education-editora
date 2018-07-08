@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5506f8c2c63c1bd7c3d0ca9f4ef6f268",
+    "content-hash": "d54ea2d6acdd27ae4edcfe3ea67d92c3",
     "packages": [
         {
             "name": "caouecs/laravel-lang",
@@ -168,24 +168,24 @@
         },
         {
             "name": "cviebrock/eloquent-sluggable",
-            "version": "4.0.4",
+            "version": "4.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cviebrock/eloquent-sluggable.git",
-                "reference": "ef8d2a1eed190ea2f78d47ac92a4500b50ffbd54"
+                "reference": "20e78e7cc68facc934034024daf1fbaae7ce0c90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cviebrock/eloquent-sluggable/zipball/ef8d2a1eed190ea2f78d47ac92a4500b50ffbd54",
-                "reference": "ef8d2a1eed190ea2f78d47ac92a4500b50ffbd54",
+                "url": "https://api.github.com/repos/cviebrock/eloquent-sluggable/zipball/20e78e7cc68facc934034024daf1fbaae7ce0c90",
+                "reference": "20e78e7cc68facc934034024daf1fbaae7ce0c90",
                 "shasum": ""
             },
             "require": {
-                "cocur/slugify": "^2.1",
+                "cocur/slugify": "^2.3",
                 "illuminate/config": "5.1.* || 5.2.* || 5.3.*",
                 "illuminate/database": "5.1.* || 5.2.* || 5.3.*",
                 "illuminate/support": "5.1.* || 5.2.* || 5.3.*",
-                "php": "^5.5.9 || ^7.0"
+                "php": "^5.6 || ^7.0"
             },
             "require-dev": {
                 "mockery/mockery": "^0.9.4",
@@ -215,7 +215,7 @@
                 "laravel",
                 "slug"
             ],
-            "time": "2016-09-13T17:20:31+00:00"
+            "time": "2016-11-09T15:42:49+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
