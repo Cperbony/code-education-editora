@@ -2,6 +2,7 @@
 
 namespace CodeEduStore\Repositories;
 
+use CodeEduStore\Models\ProducStore;
 use Prettus\Repository\Contracts\RepositoryCriteriaInterface;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
@@ -9,13 +10,15 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  * Interface CategoryRepository
  * @package namespace CodePub\Repositories;
  */
-interface ProductRepository extends
+interface OrderRepository extends
     RepositoryInterface,
     RepositoryCriteriaInterface
 {
-    public function home();
-    public function findByCategory($id);
-    public function like($search);
-    public function findBySlug($slug);
-    public function makeProductStore($id);
+    /**
+     * @param $token
+     * @param $user
+     * @param ProducStore $productStore
+     * @return mixed
+     */
+    public function process($token, $user, ProducStore $productStore);
 }

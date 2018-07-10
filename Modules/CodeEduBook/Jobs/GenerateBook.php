@@ -4,6 +4,7 @@ namespace CodeEduBook\Jobs;
 
 use CodeEduBook\Models\Book;
 use CodeEduBook\Pub\BookExport;
+use CodeEduUser\Models\User;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -16,15 +17,22 @@ class GenerateBook implements ShouldQueue
      * @var Book
      */
     private $book;
+    /**
+     * @var User
+     */
+    private $user;
 
     /**
      * Create a new job instance.
      *
      * @param Book $book
+     * @param User $user
      */
-    public function __construct(Book $book)
+    public function __construct(User $user, Book $book)
     {
+        $this->user = $user->author;
         $this->book = $book;
+
     }
 
     /**
@@ -38,12 +46,12 @@ class GenerateBook implements ShouldQueue
     {
         $bookExport->export($this->book);
         $easyBookCmd = "easybook/book publish --no-interaction --dir={$this->book->disk} {$this->book->id}";
-        exec("php ".base_path("$easyBookCmd print"));
-        exec("php ".base_path("$easyBookCmd kindle"));
-        exec("php ".base_path("$easyBookCmd ebook"));
+        exec("php " . base_path("$easyBookCmd print"));
+        exec("php " . base_path("$easyBookCmd kindle"));
+        exec("php " . base_path("$easyBookCmd ebook"));
         $bookExport->compress($this->book);
-        $exception = new \Exception("Job Falhou");
-        $this->fail($exception);
-        throw $exception;
+//        $exception = new \Exception("Job Falhou");
+//        $this->fail($exception);
+//        throw $exception;
     }
 }

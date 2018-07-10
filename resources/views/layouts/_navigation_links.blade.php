@@ -62,6 +62,10 @@ if (Auth::check()) {
             Auth::user()->name,
             [
                 [
+                    'link' => route('store.orders'),
+                    'title' => 'Minhas Compras',
+                    ],
+                [
                     'link' => url('/logout'),
                     'title' => 'Logout',
                     'linkAttributes' => [
@@ -77,7 +81,10 @@ if (Auth::check()) {
 } else {
     $formSearch = Form::open(['url' => route('store.search'), 'class' => 'form-inline form-search navbar-right', 'method' => 'GET']) .
         Html::openFormGroup() .
-        InputGroup::withContents(Form::text('search', null, ['class' => 'form-control']))->append(Form::submit('', ['class' => 'btn-search'])) .
+        InputGroup::withContents(Form::text(
+            'search', null,
+            ['class' => 'form-control']))
+            ->append(Form::submit('', ['class' => 'btn-search'])) .
         Html::closeFormGroup();
     Form::close();
 

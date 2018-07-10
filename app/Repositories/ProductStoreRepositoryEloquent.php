@@ -3,6 +3,7 @@
 namespace CodePub\Repositories;
 
 use CodeEduBook\Repositories\BookRepositoryEloquent;
+use CodeEduStore\Models\ProducStore;
 use CodeEduStore\Repositories\CategoryRepository;
 use CodeEduStore\Repositories\ProductRepository;
 
@@ -40,5 +41,16 @@ class ProductStoreRepositoryEloquent extends BookRepositoryEloquent implements P
     public function findBySlug($slug)
     {
         return $this->model->findBySlugOrFail($slug);
+    }
+
+    public function makeProductStore($id)
+    {
+        $book = $this->find($id);
+        $productStore = new ProducStore();
+        $productStore->setId($book->id)
+            ->setName($book->title)
+            ->setPrice($book->price)
+            ->setProductOriginal($book);
+        return $productStore;
     }
 }

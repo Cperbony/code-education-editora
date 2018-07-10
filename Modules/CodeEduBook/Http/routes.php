@@ -34,3 +34,5 @@ Route::group(['middleware' => [
     });
 });
 
+Route::get('books/{id}/download-common', 'BooksController@downloadCommon')->name('books.download-common');
+

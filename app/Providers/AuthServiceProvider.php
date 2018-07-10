@@ -2,6 +2,7 @@
 
 namespace CodePub\Providers;
 
+use CodeEduStore\Repositories\OrderRepository;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -23,6 +24,13 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+        \Gate::define('book-download', function ($user, $bookId) {
+           $orderRepository = app(OrderRepository::class);
+           $order = $orderRepository->findByField('orderable_id', $bookId)->first();
+           return !$order ? true : false;
+//           return $user->id == $book->author_id;
+        });
+
 
 //        \Gate::define('update-book', function ($user, $book) {
 //            return $user->id == $book->author_id;

@@ -186,4 +186,13 @@ class BooksController extends Controller
     {
         return response()->download($book->zip_file);
     }
+
+    public function downloadCommon($id)
+    {
+        $book = $this->repository->find($id);
+        if (\Gate::allows('book-download', $book->id)) {
+            return $this->download($book);
+        }
+        abort(404);
+    }
 }

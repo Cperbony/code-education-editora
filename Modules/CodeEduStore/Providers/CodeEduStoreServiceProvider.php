@@ -3,6 +3,7 @@
 namespace CodeEduStore\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Laravel\Cashier\CashierServiceProvider;
 
 class CodeEduStoreServiceProvider extends ServiceProvider
 {
@@ -36,6 +37,7 @@ class CodeEduStoreServiceProvider extends ServiceProvider
     {
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(RepositoryServiceProvider::class);
+        $this->app->register(CashierServiceProvider::class);
     }
 
     /**

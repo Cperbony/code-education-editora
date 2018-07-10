@@ -3,10 +3,12 @@
 namespace CodeEduStore\Http\Controllers;
 
 use CodeEduStore\Repositories\CategoryRepository;
+use CodeEduStore\Repositories\OrderRepository;
 use CodeEduStore\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Stripe\Error\Card;
 
 class StoreController extends Controller
 {
@@ -19,16 +21,26 @@ class StoreController extends Controller
      * @var CategoryRepository
      */
     private $categoryRepository;
+    /**
+     * @var OrderRepository
+     */
+    private $orderRepository;
 
     /**
      * StoreController constructor.
      * @param ProductRepository $productRepository
      * @param CategoryRepository $categoryRepository
+     * @param OrderRepository $orderRepository
      */
-    public function __construct(ProductRepository $productRepository, CategoryRepository $categoryRepository)
+    public function __construct(
+        ProductRepository $productRepository,
+        CategoryRepository $categoryRepository,
+        OrderRepository $orderRepository
+    )
     {
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
+        $this->orderRepository = $orderRepository;
     }
 
     /**
@@ -66,47 +78,41 @@ class StoreController extends Controller
 
     }
 
+    public function checkout($id)
+    {
+        $product = $this->productRepository->find($id);
+        return view('codeedustore::store.checkout-product', compact('product'));
+    }
+
     /**
      * Show the form for creating a new resource.
-     * @return Response
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create()
+    public function process(Request $request, $id)
     {
-        return view('codeedustore::create');
+//        dd($request->all());
+        $productStore = $this->productRepository->makeProductStore($id);
+        $user = $request->user();
+        $token = $request->get('stripeToken');
+        try {
+            $order = $this->orderRepository->process($token, $user, $productStore);
+            $status = true;
+
+        } catch (Card $exception) {
+            $status = false;
+        }
+        return view('codeedustore::store.process', compact('order', 'status'));
+
+        //Efetuar oPagamento
+
+        //Renderizar sucesso ou fracasso, sif true-> download.
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function store(Request $request)
+    public function orders()
     {
+        $orders = $this->orderRepository->all();
+        return view('codeedustore::store.orders', compact('orders'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     * @return Response
-     */
-    public function edit()
-    {
-        return view('codeedustore::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function update(Request $request)
-    {
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @return Response
-     */
-    public function destroy()
-    {
-    }
 }

@@ -8,7 +8,6 @@
 
 namespace CodeEduBook\Pub;
 
-
 use CodeEduBook\Criteria\FindByBook;
 use CodeEduBook\Criteria\OrderByOrder;
 use CodeEduBook\Models\Book;
@@ -19,7 +18,6 @@ use Symfony\Component\Yaml\Parser;
 
 class BookExport
 {
-
     /**
      * @var ChapterRepository
      */

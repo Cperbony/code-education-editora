@@ -13,10 +13,10 @@ class ChapterFakerProvider extends Base
         foreach (range(1, $numSubTitles) as $value) {
             $contents[] = [
                 'subtitle' => $this->generator->sentence(2),
-                'content' => $this->generator->sentence(10),
+                'content' => $this->generator->paragraph(10),
             ];
         }
-        return view('codeedubook::faker.chapter', compact('iitle', 'contents'));
+        return view('codeedubook::faker.chapter', compact('title', 'contents'));
     }
 
 }
