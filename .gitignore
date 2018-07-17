@@ -13,3 +13,7 @@ _bootstrapper_helper.php
 y.pub
 y
 /laradock
+app/Http/Requests/
+books/
+files/
+modules/
