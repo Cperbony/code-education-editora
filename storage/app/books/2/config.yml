@@ -3,8 +3,8 @@ easybook:
         parser.options:
             code_block_type: fenced
 book:
-    title: Nesciunt
-    author: Administrator
+    title: Possimus
+    author: 'Euna Friesen MD'
     language: en
     publication_date: null
     generator:

@@ -9,6 +9,7 @@ use CodeEduBook\Models\Book;
 use CodeEduBook\Notifications\BookExported;
 use CodeEduBook\Pub\BookCoverUpload;
 //use CodeEduBook\Pub\BookExport;
+use CodeEduBook\Pub\BookExport;
 use CodeEduUser\Annotations\Mapping as Permission;
 use CodeEduBook\Http\Requests\BookCreateRequest;
 use CodeEduBook\Http\Requests\BookUpdateRequest;
@@ -174,8 +175,8 @@ class BooksController extends Controller
 //        $bookExport = app(BookExport::class);
 //        $bookExport->export($book);
 //        $bookExport->compress($book);
-//        dispatch(new GenerateBook($book));
         $user = \Auth::user();
+//        dispatch(new GenerateBook($user, $book));
         $user->notify(new BookExported($user, $book));
 
         \Session::flash('message', "O Livro {$this->book->title} foi exportado com Sucesso!");

@@ -44,7 +44,7 @@
 {!! Html::closeFormGroup() !!}
 
 {!! Html::openFormGroup('percent_complete', $errors) !!}
-{!! Form::label('percent_complete', 'Dedicatória', ['class' => 'control-label']) !!}
+{!! Form::label('percent_complete', 'Concluído (%)', ['class' => 'control-label']) !!}
 {!! Form::number('percent_complete', null, ['class' => 'form-control']) !!}
 {!! Form::error('percent_complete', $errors) !!}
 {!! Html::closeFormGroup() !!}

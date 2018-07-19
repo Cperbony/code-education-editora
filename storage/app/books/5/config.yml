@@ -3,8 +3,8 @@ easybook:
         parser.options:
             code_block_type: fenced
 book:
-    title: Minus
-    author: 'Dr. Roberto Hackett IV'
+    title: Id
+    author: 'Euna Friesen MD'
     language: en
     publication_date: null
     generator:

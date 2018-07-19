@@ -24,7 +24,6 @@ $table = Table::withContents($books->items())->striped()
                 'onclick' => "event.preventDefault();exportBook(\"$linkExport\");"
             ]);
 
-        $buttonExport = Button::link('Exportar')->asLinkTo($anchorExport);
         $buttonChapter = Button::link('Capítulos')->asLinkTo($linkChapters);
         $buttonCover = Button::link('Cover')->asLinkTo($linkCovers);
         $buttonEdit = Button::link('Editar')->asLinkTo($linkEdit);

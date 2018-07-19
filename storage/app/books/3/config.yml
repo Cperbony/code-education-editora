@@ -3,7 +3,7 @@ easybook:
         parser.options:
             code_block_type: fenced
 book:
-    title: Id
+    title: Architecto
     author: Administrator
     language: en
     publication_date: null
