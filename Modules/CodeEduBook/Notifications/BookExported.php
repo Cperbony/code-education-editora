@@ -61,6 +61,10 @@ class BookExported extends Notification
             ->line('Ficamos felizes por usar nossa aplicação!');
     }
 
+    /**
+     * @param $notifiable
+     * @return NexmoMessage
+     */
     public function toNexmo($notifiable)
     {
         return (new NexmoMessage())

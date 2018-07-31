@@ -32,7 +32,6 @@ class GenerateBook implements ShouldQueue
     {
         $this->user = $user->author;
         $this->book = $book;
-
     }
 
     /**

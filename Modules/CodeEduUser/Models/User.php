@@ -118,6 +118,7 @@ class User extends Authenticatable implements TableInterface
 
     public function routeNotificationForNexmo()
     {
-        return "5516997178695";
+//        return "5516997178695";
+        return env('NOTIFICATION_NEXMO_CELFONE=');
     }
 }

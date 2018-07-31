@@ -3,7 +3,7 @@ easybook:
         parser.options:
             code_block_type: fenced
 book:
-    title: Nihil
+    title: Eveniet
     author: Administrator
     language: en
     publication_date: null

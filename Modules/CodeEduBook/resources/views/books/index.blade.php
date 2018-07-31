@@ -52,7 +52,10 @@
                     _token: window.Laravel.csrfToken
                 },
                 success: function (data) {
-                    window.$.notify({message: 'O processo de exportação foi iniciado!'}, {type: 'success'});
+                    window.$.notify(
+                        {message: 'O processo de exportação foi iniciado!'},
+                        {type: 'success'}
+                        );
                 }
             });
         }

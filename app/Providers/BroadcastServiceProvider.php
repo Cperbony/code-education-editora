@@ -23,7 +23,5 @@ class BroadcastServiceProvider extends ServiceProvider
         Broadcast::channel('CodeEduUser.Models.User.*', function ($user, $userId) {
             return (int) $user->id === (int) $userId;
         });
-
-
     }
 }

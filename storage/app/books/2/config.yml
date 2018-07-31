@@ -3,8 +3,8 @@ easybook:
         parser.options:
             code_block_type: fenced
 book:
-    title: Possimus
-    author: 'Euna Friesen MD'
+    title: Nostrum
+    author: Administrator
     language: en
     publication_date: null
     generator:

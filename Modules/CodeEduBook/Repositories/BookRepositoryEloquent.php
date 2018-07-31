@@ -25,13 +25,33 @@ class BookRepositoryEloquent extends BaseRepository implements BookRepository
         'categories.name' => 'like'
     ];
 
+    /**
+     * @param array $attributes
+     * @return mixed
+     */
     public function create(array $attributes)
     {
-        $model = parent::create($attributes);
+        $model = null;
+        $create = function () use ($attributes, &$model) {
+            $model = parent::create($attributes);
+        };
+        $create = \Closure::bind($create, $this);
+        if (!isset($attributes['published'])) {
+            Book::withoutSyncingToSearch($create);
+        } else {
+            $create();
+        }
         $model->categories()->sync($attributes['categories']);
+
         return $model;
     }
 
+    /**
+     * @param array $attributes
+     * @param $id
+     * @return mixed|void
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     */
     public function update(array $attributes, $id)
     {
         $model = parent::update($attributes, $id);
@@ -51,6 +71,7 @@ class BookRepositoryEloquent extends BaseRepository implements BookRepository
 
     /**
      * Boot up the repository, pushing criteria
+     * @throws \Prettus\Repository\Exceptions\RepositoryException
      */
     public function boot()
     {

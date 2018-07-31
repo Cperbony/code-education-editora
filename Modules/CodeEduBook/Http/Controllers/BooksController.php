@@ -167,6 +167,7 @@ class BooksController extends Controller
     }
 
     /**
+     * @Permission\Action(name="export", description="Exportação de Livros")
      * @param Book $book
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -176,13 +177,18 @@ class BooksController extends Controller
 //        $bookExport->export($book);
 //        $bookExport->compress($book);
         $user = \Auth::user();
-//        dispatch(new GenerateBook($user, $book));
-        $user->notify(new BookExported($user, $book));
+        dispatch(new GenerateBook($user, $book));
+//        $user->notify(new BookExported($user, $book));
 
         \Session::flash('message', "O Livro {$this->book->title} foi exportado com Sucesso!");
         return redirect()->route('books.index');
     }
 
+    /**
+     * @Permission\Action(name="download", description="Download de Livros")
+     * @param Book $book
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
     public function download(Book $book)
     {
         return response()->download($book->zip_file);

@@ -3,8 +3,8 @@ easybook:
         parser.options:
             code_block_type: fenced
 book:
-    title: Id
-    author: 'Euna Friesen MD'
+    title: Eum
+    author: 'Mack Hegmann'
     language: en
     publication_date: null
     generator:

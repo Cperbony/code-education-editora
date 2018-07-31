@@ -4,8 +4,12 @@ module.exports = {
         let existsUserId = window.Laravel.userId;
         if (existsUserId !== null) {
             window.Echo.private('CodeEduUser.Models.User.' + existsUserId)
-                .notification(notification => {
+                .notification(function (notification) {
                     console.log(notification);
+                    window.$.notify(
+                        {message: 'O livro ' + notification.book.title + 'foi exportado!'},
+                        {type: 'success'}
+                        );
                 })
         }
     }

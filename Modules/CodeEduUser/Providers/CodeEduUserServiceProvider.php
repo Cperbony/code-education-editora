@@ -70,7 +70,8 @@ class CodeEduUserServiceProvider extends ServiceProvider
     protected function registerAnnotations()
     {
         //Registra as anotações e faz o require e o include.
-        $loader = require __DIR__ . '/../../../vendor/autoload.php';
+//        $loader = require __DIR__ . '/../../../vendor/autoload.php';
+        $loader = require base_path('vendor/autoload.php');
         //Classe que registra as anotações, fazendo require ou include
         //Pegar o load e a classe em questão. Anotação será sempre uma classe (OO)
         AnnotationRegistry::registerLoader([$loader, 'loadClass']);

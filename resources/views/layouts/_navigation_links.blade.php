@@ -25,22 +25,7 @@ if (Auth::check()) {
                 ]
             ]
         ],
-//        [
-//            'Usuários',
-//            [
-//                [
-//                    'link' => route('codeeduuser.users.index'),
-//                    'title' => 'Usuários'
-//                ],
-//                [
-//                    'link' => route('codeeduuser.roles.index'),
-//                    'title' => 'Papel de usuário'
-//                ],
-//            ]
-//        ]
-    ];
-    if (Auth::user()->can('user-admin/list')) {
-        $arrayLinks [] = [
+        [
             'Usuários',
             [
                 [
@@ -50,12 +35,29 @@ if (Auth::check()) {
                 ],
                 [
                     'link' => route('codeeduuser.roles.index'),
-                    'title' => 'Papel de Usuário',
+                    'title' => 'Papel de usuário',
                     'permission' => 'role-admin/list'
                 ],
             ]
-        ];
-    }
+        ]
+    ];
+//    if (Auth::user()->can('user-admin/list')) {
+//        $arrayLinks [] = [
+//            'Usuários',
+//            [
+//                [
+//                    'link' => route('codeeduuser.users.index'),
+//                    'title' => 'Usuários',
+//                    'permission' => 'user-admin/list'
+//                ],
+//                [
+//                    'link' => route('codeeduuser.roles.index'),
+//                    'title' => 'Papel de Usuário',
+//                    'permission' => 'role-admin/list'
+//                ],
+//            ]
+//        ];
+//    }
     $links = Navigation::links(\NavbarAuthorization::getLinksAuthorized($arrayLinks));
     $logout = Navigation::links([
         [
@@ -64,7 +66,7 @@ if (Auth::check()) {
                 [
                     'link' => route('store.orders'),
                     'title' => 'Minhas Compras',
-                    ],
+                ],
                 [
                     'link' => url('/logout'),
                     'title' => 'Logout',
@@ -79,7 +81,11 @@ if (Auth::check()) {
     $navbar->withContent($links)
         ->withContent($logout);
 } else {
-    $formSearch = Form::open(['url' => route('store.search'), 'class' => 'form-inline form-search navbar-right', 'method' => 'GET']) .
+    $formSearch = Form::open([
+        'url' => route('store.search'),
+            'class' => 'form-inline form-search navbar-right',
+            'method' => 'GET'
+        ]) .
         Html::openFormGroup() .
         InputGroup::withContents(Form::text(
             'search', null,
@@ -90,14 +96,14 @@ if (Auth::check()) {
 
     $menuRight = Navigation::pills([
         [
-            'link' => url('/logout'),
+            'link' => url('/'),
             'title' => 'Registrar',
             'linkAttributes' => [
                 'class' => "btnnew btnnew-default"
             ]
         ],
         [
-            'link' => url('/logout'),
+            'link' => url('/login'),
             'title' => 'Login',
             'linkAttributes' => [
                 'class' => "btnnew btnnew-default"
@@ -109,7 +115,9 @@ if (Auth::check()) {
 }
 
 $form = Form::open([
-        'url' => url('/logout'), 'id' => 'logout-form', 'style' => 'display:none'
+        'url' => url('/logout'),
+        'id' => 'logout-form',
+        'style' => 'display:none'
     ]) . Form::close();
 ?>
 

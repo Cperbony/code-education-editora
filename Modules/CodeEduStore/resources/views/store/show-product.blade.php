@@ -5,7 +5,7 @@
         <article class="col-md-4">
             <h2>{{$product->title}}</h2>
             <div class="author">
-                <img src="http://www.avatar.com/avatar/{{md5($product->author->email)}}?s=30" alt="{{$product->author->name}}"/>
+                <img src="http://www.gravatar.com/avatar/{{md5($product->author->email)}}?s=30" alt="{{$product->author->name}}"/>
                 <p>{{$product->author->name}}</p>
             </div>
             <p>{{$product->description}}</p>
