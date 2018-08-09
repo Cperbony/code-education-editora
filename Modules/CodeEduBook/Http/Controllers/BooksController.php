@@ -196,7 +196,7 @@ class BooksController extends Controller
 
     public function downloadCommon($id)
     {
-        $book = $this->repository->find($id);
+        $book = $this->repository->skipCriteria()->find($id);
         if (\Gate::allows('book-download', $book->id)) {
             return $this->download($book);
         }
